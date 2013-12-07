@@ -49,4 +49,5 @@ group :developement, :test do
   gem 'rspec-rails'
   gem 'shoulda-matchers'
   gem 'database_cleaner'
+  gem 'cucumber-rails', :require => false
 end
