@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131207204056) do
+ActiveRecord::Schema.define(version: 20131209170805) do
 
   create_table "competitions", force: true do |t|
     t.string   "name"
@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 20131207204056) do
     t.string   "image"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.date     "registration_close_date"
   end
 
 end
