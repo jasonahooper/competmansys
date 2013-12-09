@@ -12,8 +12,6 @@
  *= require_tree .
  */
 body {
-/*  width: 1024;
-  height: 768; */
   padding-top: 40px;
   background: rgb(178,225,255); /* Old browsers */
   background: -moz-linear-gradient(left, rgba(178,225,255,1) 0%, rgba(102,182,252,1) 100%); /* FF3.6+ */
