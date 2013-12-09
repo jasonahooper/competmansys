@@ -48,7 +48,7 @@ end
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
-group :developement, :test do
+group :development, :test do
   gem 'pry-byebug'
   gem 'rspec-rails'
   gem 'shoulda-matchers'
