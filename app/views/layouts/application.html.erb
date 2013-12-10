@@ -50,7 +50,7 @@
           <div class="container nav-collapse">
             <nav>
               <ul class="nav">
-                <li><%= link_to "Link1", "/path1"  %></li>
+                <li><%= link_to "Find", "#"  %></li>
                 <li><%= link_to "Link2", "/path2"  %></li>
                 <li><%= link_to "Link3", "/path3"  %></li>
               </ul>
@@ -63,8 +63,8 @@
     <div class="container">
       <div class="row">
         <div class="span9">
-          <%= bootstrap_flash %>
           <%= yield %>
+          <%= bootstrap_flash %>
         </div>
         <div class="span3">
           <div class="well sidebar-nav">
@@ -74,17 +74,31 @@
                 <li class="nav-header">Account</li>
                 <% if user_signed_in? %>
                   <li>
-                  <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
+                    <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
                   </li>
                   <li>
-                  <%= link_to('Edit registration', edit_user_registration_path) %>
+                    <%= link_to('Edit registration', edit_user_registration_path) %>
                   </li>
+                  <li class="nav-header">Competition</li>
+                    <li>
+                      <%= link_to('Create', '#') %>
+                    </li>
+                    <li>
+                      <%= link_to('Edit', '#') %>
+                    </li>
+                  <li class="nav-header">Event</li>
+                    <li>
+                      <%= link_to('Create', '#') %>
+                    </li>
+                    <li>
+                      <%= link_to('Edit', '#') %>
+                    </li>
                 <% else %>
                   <li>
-                  <%= link_to('Login', new_user_session_path)  %>
+                    <%= link_to('Login', new_user_session_path)  %>
                   </li>
                   <li>
-                  <%= link_to('Register', new_user_registration_path)  %>
+                    <%= link_to('Register', new_user_registration_path)  %>
                   </li>
                 <% end %>
               </ul>
@@ -93,10 +107,10 @@
         </div><!--/span-->
       </div><!--/row-->
 
-      <footer>
+<!--       <footer>
         <p>&copy; Company 2013</p>
       </footer>
-    </div> <!-- /container -->
+ -->    </div> <!-- /container -->
 
   </body>
 </html>
