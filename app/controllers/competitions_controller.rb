@@ -1,11 +1,21 @@
 class CompetitionsController < ApplicationController
 
+  def index
+    @comps = Competition.all
+  end
+
   def new
     @comp = Competition.new(:user_id => current_user)
   end
 
   def show
     @comp = Competition.find(params[:id])
+  end
+
+  def destroy
+    @comp = Competition.find(params[:id])
+    @comp.destroy
+    redirect_to :action => "index"
   end
 
   def edit
