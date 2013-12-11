@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  ROLES = %w[admin competition_creator competition_administrator competitor guest team_manager]
+  ROLES = %w[admin competition_owner]
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,

@@ -3,6 +3,7 @@ class Ability
 
   def initialize(user)
     can :manage, :all if user.is? :admin
+    can :create, Competition if user.is? :competition_owner
 
     # Define abilities for the passed in user here. For example:
     #
