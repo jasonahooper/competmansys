@@ -18,4 +18,6 @@ class Competition < ActiveRecord::Base
       errors.add :start_date, "must be after today"
     end
   end
+
+  belongs_to :user
 end

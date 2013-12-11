@@ -18,4 +18,7 @@ class User < ActiveRecord::Base
   def is?(role)
     roles.include?(role.to_s)
   end
+
+  has_many :competitions
+
 end
