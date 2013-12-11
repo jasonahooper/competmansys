@@ -1,0 +1,29 @@
+<div id='competition-show'>
+  <div class="row">
+    <div class="span9">
+      <h2>Show Competition:</h2>
+    </div>
+  </div>
+  <div class="row">
+    <div class="span4">
+      <dl>
+        <dt>Name:</dt>
+        <dd><%= @comp.name %></dd>
+        <dt>Description:</dt>
+        <dd><%= @comp.description %></dd>
+        <dt>Start date:</dt>
+        <dd><%= @comp.start_date %></dd>
+        <dt>End date:</dt>
+        <dd><%= @comp.end_date %></dd>
+        <dt>Registration close date:</dt>
+        <dd><%= @comp.registration_close_date %></dd>
+      </dl>
+    </div>
+    <div class="span5">
+      <h5>Image:</h5>
+      <div class="image">
+        <%= image_tag @comp.image %>
+      </div>
+    </div>
+  </div>
+</div>
