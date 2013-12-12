@@ -61,7 +61,8 @@ CREATE TABLE competitions (
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
     registration_close_date date,
-    user_id integer
+    user_id integer,
+    location character varying(255)
 );
 
 
@@ -82,6 +83,39 @@ CREATE SEQUENCE competitions_id_seq
 --
 
 ALTER SEQUENCE competitions_id_seq OWNED BY competitions.id;
+
+
+--
+-- Name: events; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE events (
+    id integer NOT NULL,
+    competition_id integer,
+    name character varying(255),
+    description character varying(255),
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+--
+-- Name: events_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE events_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: events_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE events_id_seq OWNED BY events.id;
 
 
 --
@@ -152,6 +186,13 @@ ALTER TABLE ONLY competitions ALTER COLUMN id SET DEFAULT nextval('competitions_
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY events ALTER COLUMN id SET DEFAULT nextval('events_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regclass);
 
 
@@ -169,6 +210,14 @@ ALTER TABLE ONLY competition_administrators
 
 ALTER TABLE ONLY competitions
     ADD CONSTRAINT competitions_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: events_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY events
+    ADD CONSTRAINT events_pkey PRIMARY KEY (id);
 
 
 --
@@ -217,3 +266,7 @@ INSERT INTO schema_migrations (version) VALUES ('20131210183152');
 INSERT INTO schema_migrations (version) VALUES ('20131211132056');
 
 INSERT INTO schema_migrations (version) VALUES ('20131212144331');
+
+INSERT INTO schema_migrations (version) VALUES ('20131212151334');
+
+INSERT INTO schema_migrations (version) VALUES ('20131212161655');

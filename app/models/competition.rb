@@ -31,6 +31,8 @@ class Competition < ActiveRecord::Base
   end
 
   belongs_to :user
+
   has_many :competition_administrators
+  has_many :events
 
 end
