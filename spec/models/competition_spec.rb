@@ -12,6 +12,7 @@ describe Competition do
   it { should validate_presence_of(:start_date) }
   it { should validate_presence_of(:end_date) }
   it { should validate_presence_of(:registration_close_date) }
+  it { should validate_presence_of(:location) }
 
   it 'should have start_date after today' do
     Competition.new(:name => 'test',:description => 'test',

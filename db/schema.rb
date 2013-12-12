@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131212144331) do
+ActiveRecord::Schema.define(version: 20131212151334) do
 
   create_table "competition_administrators", force: true do |t|
     t.integer  "competition_id"
@@ -30,6 +30,7 @@ ActiveRecord::Schema.define(version: 20131212144331) do
     t.datetime "updated_at"
     t.date     "registration_close_date"
     t.integer  "user_id"
+    t.string   "location"
   end
 
   create_table "users", force: true do |t|

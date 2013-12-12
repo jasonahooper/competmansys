@@ -5,6 +5,8 @@ class Competition < ActiveRecord::Base
   validates :end_date, :presence => true
   validates :image, :presence => true
   validates :registration_close_date, :presence => true
+  validates :location, :presence => true
+
   validate :start_date_after_today
   validate :end_date_after_start_date
   validate :close_date_before_start_date

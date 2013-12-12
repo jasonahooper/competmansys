@@ -9,7 +9,7 @@ describe CompetitionsController do
         :name => 'Test', :description => 'Test competition',
         :start_date => 7.days.from_now, :end_date => 7.days.from_now + 7.days,
         :image => 'dummy.jpg', :registration_close_date => 2.days.from_now,
-        :user_id => @user.id
+        :user_id => @user.id, :location => 'a test location'
       )
     end
 
@@ -106,7 +106,8 @@ describe CompetitionsController do
         {
           :name => 'Test', :description => 'Test competition',
           :start_date => 7.days.from_now, :end_date => 7.days.from_now + 7.days,
-          :image => 'dummy.jpg', :registration_close_date => 2.days.from_now
+          :image => 'dummy.jpg', :registration_close_date => 2.days.from_now,
+          :location => 'a test location'
         }
       }
       post :create, valid_params
