@@ -16,6 +16,38 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
+-- Name: competition_administrators; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE competition_administrators (
+    id integer NOT NULL,
+    competition_id integer,
+    user_id integer,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+--
+-- Name: competition_administrators_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE competition_administrators_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: competition_administrators_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE competition_administrators_id_seq OWNED BY competition_administrators.id;
+
+
+--
 -- Name: competitions; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -28,7 +60,8 @@ CREATE TABLE competitions (
     image character varying(255),
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
-    registration_close_date date
+    registration_close_date date,
+    user_id integer
 );
 
 
@@ -77,7 +110,8 @@ CREATE TABLE users (
     current_sign_in_ip character varying(255),
     last_sign_in_ip character varying(255),
     created_at timestamp without time zone,
-    updated_at timestamp without time zone
+    updated_at timestamp without time zone,
+    roles_mask integer
 );
 
 
@@ -104,6 +138,13 @@ ALTER SEQUENCE users_id_seq OWNED BY users.id;
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY competition_administrators ALTER COLUMN id SET DEFAULT nextval('competition_administrators_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY competitions ALTER COLUMN id SET DEFAULT nextval('competitions_id_seq'::regclass);
 
 
@@ -112,6 +153,14 @@ ALTER TABLE ONLY competitions ALTER COLUMN id SET DEFAULT nextval('competitions_
 --
 
 ALTER TABLE ONLY users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regclass);
+
+
+--
+-- Name: competition_administrators_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY competition_administrators
+    ADD CONSTRAINT competition_administrators_pkey PRIMARY KEY (id);
 
 
 --
@@ -162,3 +211,9 @@ INSERT INTO schema_migrations (version) VALUES ('20131207204056');
 INSERT INTO schema_migrations (version) VALUES ('20131209170805');
 
 INSERT INTO schema_migrations (version) VALUES ('20131209183605');
+
+INSERT INTO schema_migrations (version) VALUES ('20131210183152');
+
+INSERT INTO schema_migrations (version) VALUES ('20131211132056');
+
+INSERT INTO schema_migrations (version) VALUES ('20131212144331');

@@ -29,5 +29,6 @@ class Competition < ActiveRecord::Base
   end
 
   belongs_to :user
+  has_many :competition_administrators
 
 end

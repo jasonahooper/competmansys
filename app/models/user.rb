@@ -20,5 +20,6 @@ class User < ActiveRecord::Base
   end
 
   has_many :competitions
+  has_many :competition_administrators
 
 end
