@@ -120,9 +120,10 @@ describe CompetitionsController do
       expect(Competition.first.user_id).to eq(@user.id)
     end
 
-    it 'should add a CompetitionAdministrator'
-      # expect(CompetitionAdministrator.count).to eq(1)
-    # end
+    it 'should add a CompetitionAdministrator' do
+      expect(CompetitionAdministrator.count).to eq(1)
+    end
+
     it 'should redirect to the show Competition page' do
       expect(response).to redirect_to(competition_path(Competition.first.id))
     end

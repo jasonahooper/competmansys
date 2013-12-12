@@ -38,6 +38,9 @@ class CompetitionsController < ApplicationController
     @comp = Competition.new(competition_params)
     @comp.user_id = current_user.id
     if @comp.save
+      ca = CompetitionAdministrator.new(
+        :competition_id => @comp.id, :user_id => current_user.id)
+      ca.save!
       flash[:info] = "Competition created successfully."
       redirect_to :action => "show", :id => @comp.id
     else
