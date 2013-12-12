@@ -60,3 +60,5 @@ group :development, :test do
   gem 'cucumber-rails', :require => false
   gem 'launchy'
 end
+
+gem 'rails_12factor', group: :production
