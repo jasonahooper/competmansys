@@ -71,6 +71,9 @@
             <h3>Quick Links</h3>
             <nav>
               <ul class="nav nav-list">
+                <li>
+                  <%= link_to('Home', root_path) %>
+                </li>
                 <li class="nav-header">Account</li>
                 <% if user_signed_in? %>
                   <li>
@@ -80,19 +83,12 @@
                     <%= link_to('Edit registration', edit_user_registration_path) %>
                   </li>
                   <li class="nav-header">Competition</li>
-                    <li>
-                      <%= link_to('Create', new_competition_path) %>
-                    </li>
-                    <li>
-                      <%= link_to('List', competitions_path) %>
-                    </li>
-                  <li class="nav-header">Event</li>
-                    <li>
-                      <%= link_to('Create', '#') %>
-                    </li>
-                    <li>
-                      <%= link_to('List', '#') %>
-                    </li>
+                  <li>
+                    <%= link_to('Create', new_competition_path) %>
+                  </li>
+                  <li>
+                    <%= link_to('List', competitions_path) %>
+                  </li>
                 <% else %>
                   <li>
                     <%= link_to('Login', new_user_session_path)  %>
