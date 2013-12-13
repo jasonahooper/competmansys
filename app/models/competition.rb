@@ -37,4 +37,7 @@ class Competition < ActiveRecord::Base
 
   accepts_nested_attributes_for :events,
     reject_if: lambda {|attributes| attributes['name'].blank?}
+
+  mount_uploader :image, CompetitionImageUploader
+
 end
