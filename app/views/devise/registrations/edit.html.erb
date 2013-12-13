@@ -20,11 +20,15 @@
   <%= f.password_field :current_password %></div>
 
   <div>
+    <!--
     <% for role in User::ROLES %>
       <%= check_box_tag "user[roles][#{role}]", role, @user.roles.include?(role), {:name => "user[roles][]"}%>
       <%= label_tag "user_roles_#{role}", role.humanize %><br />
     <% end %>
     <%= hidden_field_tag "user[roles][]", "" %>
+  -->
+    <input id="user_roles_competition_owner" name="user[roles][]" type="checkbox" value="competition_owner">
+    <label for="user_roles_competition_owner">Competition owner</label>
   </div>
 
   <div><%= f.submit "Update" %></div>
