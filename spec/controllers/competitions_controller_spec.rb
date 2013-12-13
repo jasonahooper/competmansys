@@ -28,7 +28,7 @@ describe CompetitionsController do
       end
     end
 
-    describe 'editing a competition' do
+    describe 'listing competitions' do
       before do
         get :index
       end
@@ -44,10 +44,12 @@ describe CompetitionsController do
 
     describe 'deleting a competition' do
       before do
+        Event.create!(:competition_id => @competition.id, :name => 'Test Delete',
+          :description => 'test delete')
         delete :destroy, { :id => @competition.id }
       end
 
-      it 'should render the list Competition page' do
+      it 'should redirect to the list Competition page' do
         expect(response).to redirect_to(competitions_path)
       end
 
@@ -55,14 +57,20 @@ describe CompetitionsController do
         expect(Competition.count).to eq(0)
       end
 
+      it 'should delete the Competition Events' do
+        expect(Event.count).to eq(0)
+      end
+
     end
+
     describe 'updating an edited competition' do
       before do
         valid_params = { :id => @competition.id, :competition =>
           {
-            :name => 'Test2', :description => 'Updated', :event_attributes => {
+            :name => 'Test2', :description => 'Updated', :events_attributes => {
+              "0" => {
               :name => 'test event', :description => 'test event desc'
-            }
+            }}
           }
         }
         patch :update, valid_params
@@ -70,6 +78,10 @@ describe CompetitionsController do
 
       it 'should update the Competition' do
         expect(Competition.count).to eq(1)
+      end
+
+      it 'should add the Event' do
+        expect(Event.count).to eq(1)
       end
 
       it 'should set the Competition name' do
@@ -81,6 +93,7 @@ describe CompetitionsController do
       end
 
     end
+
   end
 
   describe 'creating a new competition' do
@@ -111,8 +124,8 @@ describe CompetitionsController do
           :name => 'Test', :description => 'Test competition',
           :start_date => 7.days.from_now, :end_date => 7.days.from_now + 7.days,
           :image => file, :registration_close_date => 2.days.from_now,
-          :location => 'a test location', :event_attributes => {
-            :name => 'test event', :description => 'test event desc'
+          :location => 'a test location', :events_attributes => { "0" => {
+            :name => 'test event', :description => 'test event desc'}
           }
         }
       }

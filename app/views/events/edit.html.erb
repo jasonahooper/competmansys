@@ -1,0 +1,13 @@
+<div id='event-edit'>
+  <div class="row">
+    <div class="span9">
+      <h2>Edit Event for Competition <%="#{@comp.name}"%>:</h2>
+      <%= form_for [@comp, @event] do |f| %>
+        <%= render partial: "form", :locals => {:f => f} %>
+        <div>
+          <%= f.submit "Save" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

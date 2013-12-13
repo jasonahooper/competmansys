@@ -6,7 +6,7 @@ class CompetitionsController < ApplicationController
 
   def new
     @comp = Competition.new(:user_id => current_user)
-    5.times { @comp.events.new }
+    @comp.events.new
   end
 
   def show
@@ -15,13 +15,14 @@ class CompetitionsController < ApplicationController
 
   def destroy
     @comp = Competition.find(params[:id])
-    @comp.destroy
+    @comp.destroy!
+    flash[:info] = "Competition destroyed successfully."
     redirect_to :action => "index"
   end
 
   def edit
     @comp = Competition.find(params[:id])
-    5.times { @comp.events.new }
+    @comp.events.new
   end
 
   def update

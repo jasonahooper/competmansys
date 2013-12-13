@@ -1,0 +1,13 @@
+<div id='event-create'>
+  <div class="row">
+    <div class="span9">
+      <h2>Create Event for Competition <%="#{@comp.name}"%>:</h2>
+      <%= form_for [@comp, @event] do |f| %>
+        <%= render partial: "form", :locals => {:f => f} %>
+        <div>
+          <%= f.submit "Create" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

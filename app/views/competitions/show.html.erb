@@ -22,6 +22,7 @@
         <dt>Events:</dt>
         <dd><%= @comp.events.map {|e| e.name}.join(',') %></dd>
       </dl>
+      <%= link_to("Edit", edit_competition_path(@comp.id))%>
     </div>
     <div class="span5">
       <h5>Image:</h5>
