@@ -1,4 +1,9 @@
 class Competition < ActiveRecord::Base
+
+  scope :upcoming, lambda {
+    Competition.where('start_date > ?', Date.today)
+  }
+
   validates :name, :presence => :true
   validates :description, :presence => :true
   validates :start_date, :presence => :true

@@ -12,24 +12,16 @@
 
         <!-- Wrapper for slides -->
         <div class="carousel-inner">
-          <div class="item active">
-            <img src="/assets/Bern.jpg" alt="Bern">
-            <div class="carousel-caption">
-              <p>A test competition in Bern</p>
+          <% active = "active" %>
+          <% Competition.upcoming.order(:start_date).limit(3).each do |c| %>
+            <div class="item <%=active%>">
+              <%= image_tag c.image %>
+              <div class="carousel-caption">
+                <p><%= c.description %></p>
+              </div>
             </div>
-          </div>
-          <div class="item">
-            <img src="/assets/Beijing.jpg" alt="Beijing">
-            <div class="carousel-caption">
-              <p>A test competition in Beijing</p>
-            </div>
-          </div>
-          <div class="item">
-            <img src="/assets/Sheffield.jpg" alt="Sheffield">
-            <div class="carousel-caption">
-              <p>A test competition in Sheffield</p>
-            </div>
-          </div>
+            <% active = nil %>
+          <% end %>
         </div>
 
         <!-- Controls -->
