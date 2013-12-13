@@ -35,6 +35,7 @@ gem 'rails-observers'
 
 gem 'cancan'
 
+gem 'mini_magick'
 gem 'carrierwave'
 
 group :doc do
