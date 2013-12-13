@@ -19,6 +19,8 @@
         <dd><%= @comp.registration_close_date %></dd>
         <dt>Location:</dt>
         <dd><%= @comp.location %></dd>
+        <dt>Events:</dt>
+        <dd><%= @comp.events.map {|e| e.name}.join(',') %></dd>
       </dl>
     </div>
     <div class="span5">
