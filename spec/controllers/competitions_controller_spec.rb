@@ -14,6 +14,20 @@ describe CompetitionsController do
       )
     end
 
+    describe 'finding a competition' do
+      before do
+        get :find
+      end
+
+      it 'should give a 200 status code' do
+        expect(response.status).to eq(200)
+      end
+
+      it 'should render the find Competition page' do
+        expect(response).to render_template("find")
+      end
+    end
+
     describe 'showing a competition' do
       before do
         get :show, { :id => @competition.id }
