@@ -5,10 +5,11 @@ describe CompetitionsController do
   context 'with an existing competition' do
     before do
       @user = User.create!(:email => 'test@example.com', :password => 'password')
+      file = fixture_file_upload('/sheffield.jpg','application/jpg')
       @competition = Competition.create(
         :name => 'Test', :description => 'Test competition',
         :start_date => 7.days.from_now, :end_date => 7.days.from_now + 7.days,
-        :image => 'dummy.jpg', :registration_close_date => 2.days.from_now,
+        :image => file, :registration_close_date => 2.days.from_now,
         :user_id => @user.id, :location => 'a test location'
       )
     end
@@ -104,11 +105,12 @@ describe CompetitionsController do
       @user = User.create!(:email => 'test@example.com', :password => 'password')
       sign_in @user
 
+      file = fixture_file_upload('/sheffield.jpg','application/jpg')
       valid_params = { :competition =>
         {
           :name => 'Test', :description => 'Test competition',
           :start_date => 7.days.from_now, :end_date => 7.days.from_now + 7.days,
-          :image => 'dummy.jpg', :registration_close_date => 2.days.from_now,
+          :image => file, :registration_close_date => 2.days.from_now,
           :location => 'a test location', :event_attributes => {
             :name => 'test event', :description => 'test event desc'
           }
