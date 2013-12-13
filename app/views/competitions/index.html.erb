@@ -8,7 +8,8 @@
               <%= link_to("Edit ", edit_competition_path(:id => c.id)) %>
               <%= link_to("Delete ", competition_path(:id => c.id), :method => :delete) %>
               <%= link_to("Info ", competition_path(:id => c.id)) %>
-              <%= "#{c.name} (from #{c.start_date} to #{c.end_date})"%></li>
+              <%= "#{c.name} (from #{c.start_date} to #{c.end_date}) Events: #{c.events.count}"%>
+            </li>
           <% end %>
         </ul>
     </div>
