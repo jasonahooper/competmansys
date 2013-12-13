@@ -38,6 +38,8 @@ gem 'cancan'
 gem 'mini_magick'
 gem 'carrierwave'
 
+gem 'simplecov', :require => false, :group => :test
+
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
