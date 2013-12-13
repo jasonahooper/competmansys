@@ -19,7 +19,7 @@
             <div class="item <%=active%>">
               <%= image_tag c.image %>
               <div class="carousel-caption">
-                <p><%= c.description %></p>
+                <p><%= "#{c.name} - #{c.description}" %></p>
               </div>
             </div>
             <% active = nil %>
