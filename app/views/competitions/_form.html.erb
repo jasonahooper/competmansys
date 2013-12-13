@@ -1,28 +1,45 @@
-        <fieldset><%= f.label :name %>
+        <fieldset>
+          <%= f.label :name %>
           <%= f.text_field :name, :autofocus => true %>
         </fieldset>
 
-        <fieldset><%= f.label :description %>
+        <fieldset>
+          <%= f.label :description %>
           <%= f.text_field :description%>
         </fieldset>
 
-        <fieldset><%= f.label :start_date %>
+        <fieldset>
+          <%= f.label :start_date %>
           <%= f.date_field :start_date %>
         </fieldset>
 
-        <fieldset><%= f.label :end_date %>
+        <fieldset>
+          <%= f.label :end_date %>
           <%= f.date_field :end_date %>
         </fieldset>
 
-        <fieldset><%= f.label :image %>
+        <fieldset>
+          <%= f.label :image %>
           <%= f.text_field :image %>
         </fieldset>
 
-        <fieldset><%= f.label :registration_close_date %>
+        <fieldset>
+          <%= f.label :registration_close_date %>
           <%= f.date_field :registration_close_date %>
         </fieldset>
 
-        <fieldset><%= f.label :location %>
+        <fieldset>
+          <%= f.label :location %>
           <%= f.text_field :location %>
+        </fieldset>
+
+        <fieldset>
+          Event List:
+          <%= f.fields_for :events do |e| %>
+            <%= e.label :name %>
+            <%= e.text_field :name %>
+            <%= e.label :description %>
+            <%= e.text_field :description %>
+          <% end %>
         </fieldset>
 

@@ -6,6 +6,7 @@ class CompetitionsController < ApplicationController
 
   def new
     @comp = Competition.new(:user_id => current_user)
+    5.times { @comp.events.new }
   end
 
   def show
@@ -20,6 +21,7 @@ class CompetitionsController < ApplicationController
 
   def edit
     @comp = Competition.find(params[:id])
+    5.times { @comp.events.new }
   end
 
   def update
@@ -53,6 +55,7 @@ class CompetitionsController < ApplicationController
   private
   def competition_params
     params.require(:competition).permit(:name, :description, :start_date,
-      :end_date, :image, :registration_close_date, :user_id, :location)
+      :end_date, :image, :registration_close_date, :user_id, :location,
+      :events_attributes => [:name, :description])
   end
 end

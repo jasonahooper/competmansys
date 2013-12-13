@@ -35,4 +35,6 @@ class Competition < ActiveRecord::Base
   has_many :competition_administrators
   has_many :events
 
+  accepts_nested_attributes_for :events,
+    reject_if: lambda {|attributes| attributes['name'].blank?}
 end

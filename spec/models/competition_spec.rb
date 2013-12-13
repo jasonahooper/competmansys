@@ -33,4 +33,6 @@ describe Competition do
       :registration_close_date => Date.today + 1.day).should have(1).
         errors_on(:registration_close_date)
   end
+
+  it { should accept_nested_attributes_for(:events) }
 end

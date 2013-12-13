@@ -59,7 +59,9 @@ describe CompetitionsController do
       before do
         valid_params = { :id => @competition.id, :competition =>
           {
-            :name => 'Test2', :description => 'Updated'
+            :name => 'Test2', :description => 'Updated', :event_attributes => {
+              :name => 'test event', :description => 'test event desc'
+            }
           }
         }
         patch :update, valid_params
@@ -107,7 +109,9 @@ describe CompetitionsController do
           :name => 'Test', :description => 'Test competition',
           :start_date => 7.days.from_now, :end_date => 7.days.from_now + 7.days,
           :image => 'dummy.jpg', :registration_close_date => 2.days.from_now,
-          :location => 'a test location'
+          :location => 'a test location', :event_attributes => {
+            :name => 'test event', :description => 'test event desc'
+          }
         }
       }
       post :create, valid_params
