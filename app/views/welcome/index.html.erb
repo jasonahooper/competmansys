@@ -5,9 +5,11 @@
       <div id="competition-carousel" class="carousel slide" data-ride="carousel">
         <!-- Indicators -->
         <ol class="carousel-indicators">
-          <li data-target="#competition-carousel" data-slide-to="0" class="active"></li>
-          <li data-target="#competition-carousel" data-slide-to="1"></li>
-          <li data-target="#competition-carousel" data-slide-to="2"></li>
+          <% active = "active" %>
+          <% Competition.upcoming.limit(3).count.times do |i|%>
+            <li data-target="#competition-carousel" data-slide-to="<%=i%>" class="<%=active%>"></li>
+            <% active=nil %>
+          <% end %>
         </ol>
 
         <!-- Wrapper for slides -->
