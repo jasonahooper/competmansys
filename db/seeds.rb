@@ -10,7 +10,7 @@
 
 @comp = Competition.create!(:name => 'Archery Test', :description => 'An Archery Competition',
   :start_date => '2014-1-1', :end_date => '2014-1-1', :registration_close_date => '2014-1-1',
-  :image => open("spec/fixtures/bangalore.jpg"), :location => 'Bangalore, India',
+  :image => open("app/assets/images/bangalore.jpg"), :location => 'Bangalore, India',
   :user_id => @user.id)
 
 Event.create!(:name => 'Recurve', :description => 'Recurve', :competition_id => @comp.id)
@@ -20,7 +20,7 @@ Event.create!(:name => 'Team Compound', :description => 'Team Compound', :compet
 
 @comp = Competition.create!(:name => 'Athletics Test', :description => 'An Athletics Competition',
   :start_date => '2014-2-1', :end_date => '2014-2-1', :registration_close_date => '2014-2-1',
-  :image => open("spec/fixtures/birmingham.jpg"), :location => 'Alexandra Stadium, Birmingham, England',
+  :image => open("app/assets/images/birmingham.jpg"), :location => 'Alexandra Stadium, Birmingham, England',
   :user_id => @user.id)
 
 Event.create!(:name => '100m', :description => '100m', :competition_id => @comp.id)
@@ -40,7 +40,7 @@ Event.create!(:name => 'Javelin', :description => 'Javelin', :competition_id => 
 
 @comp = Competition.create!(:name => 'Swimming Test', :description => 'A Swimming Competition',
   :start_date => '2014-3-1', :end_date => '2014-3-1', :registration_close_date => '2014-3-1',
-  :image => open("spec/fixtures/sheffield.jpg"), :location => 'Ponds Forge, Sheffield, England',
+  :image => open("app/assets/images/sheffield.jpg"), :location => 'Ponds Forge, Sheffield, England',
   :user_id => @user.id)
 
 Event.create!(:name => '50m Freestyle', :description => '50m Freestyle', :competition_id => @comp.id)

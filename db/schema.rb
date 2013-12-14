@@ -13,10 +13,6 @@
 
 ActiveRecord::Schema.define(version: 20131214154851) do
 
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "cube"
-  enable_extension "earthdistance"
-
   create_table "competition_administrators", force: true do |t|
     t.integer  "competition_id"
     t.integer  "user_id"
