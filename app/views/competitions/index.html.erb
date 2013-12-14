@@ -5,8 +5,10 @@
         <ul>
           <% @comps.each do |c| %>
             <li>
-              <%= link_to("Edit ", edit_competition_path(:id => c.id)) %>
-              <%= link_to("Delete ", competition_path(:id => c.id), :method => :delete) %>
+              <% if signed_in? %>
+                <%= link_to("Edit ", edit_competition_path(:id => c.id)) %>
+                <%= link_to("Delete ", competition_path(:id => c.id), :method => :delete) %>
+              <% end %>
               <%= link_to("Info ", competition_path(:id => c.id)) %>
               <%= "#{c.name} in #{c.location} (from #{c.start_date} to #{c.end_date}) "%>
               <%=link_to('Events:', competition_events_path(c.id))%>
