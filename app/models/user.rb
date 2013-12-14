@@ -22,4 +22,6 @@ class User < ActiveRecord::Base
   has_many :competitions
   has_many :competition_administrators
 
+  geocoded_by :home_address
+  after_validation :geocode
 end

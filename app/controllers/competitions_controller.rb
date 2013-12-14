@@ -54,6 +54,30 @@ class CompetitionsController < ApplicationController
   end
 
   def find
+    @locations = ['where I am now']
+    @locations << ['my home address'] if signed_in? && current_user.latitude
+  end
+
+  def search
+    if params[:distance]
+      if params[:from] == 'where I am now'
+        lat = request.location.latitude
+        lng = request.location.longitude
+      elsif params[:from] == "my home address"
+        lat = current_user.latitude
+        lng = current_user.longitude
+      end
+      @comps = Competition.miles_from(lat, lng, params[:distance])
+    elsif params[:keywords]
+      @comps = Competition.keywords(params[:keywords])
+    elsif params[:start_date]
+      if params[:end_date] && params[:end_date] > params[:start_date]
+        @comps = Competition.between(params[:start_date], params[:end_date])
+      else
+        @comps = Competition.on_or_after(params[:start_date])
+      end
+    end
+    render 'index'
   end
 
   private

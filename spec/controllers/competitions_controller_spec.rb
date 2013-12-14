@@ -3,17 +3,21 @@ require 'spec_helper'
 describe CompetitionsController do
   before do
     Competition.any_instance.stub(:geocode)
+    User.any_instance.stub(:geocode)
   end
 
   context 'with an existing competition' do
     before do
-      @user = User.create!(:email => 'test@example.com', :password => 'password')
+
+      @user = User.create!(:email => 'test@example.com', :password => 'password',
+        :latitude => 10, :longitude => 10)
       file = fixture_file_upload('/sheffield.jpg','application/jpg')
       @competition = Competition.create(
         :name => 'Test', :description => 'Test competition',
         :start_date => 7.days.from_now, :end_date => 7.days.from_now + 7.days,
         :image => file, :registration_close_date => 2.days.from_now,
-        :user_id => @user.id, :location => 'a test location'
+        :user_id => @user.id, :location => 'a test location',
+        :latitude => 10, :longitude => 10
       )
     end
 
@@ -56,6 +60,103 @@ describe CompetitionsController do
 
       it 'should render the list Competition page' do
         expect(response).to render_template("index")
+      end
+    end
+
+    describe 'searching for competitions by keyword' do
+      before do
+        post :search, :keywords => 'competition'
+      end
+
+      it 'should give a 200 status code' do
+        expect(response.status).to eq(200)
+      end
+
+      it 'should render the list Competition page' do
+        expect(response).to render_template("index")
+      end
+
+      it 'should find one competition' do
+        expect(assigns(:comps).length).to eq(1)
+      end
+    end
+
+    describe 'searching for competitions by location' do
+      context 'near my home address' do
+        before do
+          sign_in @user
+          post :search, :from => 'my home address', :distance => '50'
+        end
+
+        it 'should give a 200 status code' do
+          expect(response.status).to eq(200)
+        end
+
+        it 'should render the list Competition page' do
+          expect(response).to render_template("index")
+        end
+
+        it 'should find one competition' do
+          expect(assigns(:comps).length).to eq(1)
+        end
+      end
+      context 'near where I am now' do
+        before do
+          @competition.latitude = 0
+          @competition.longitude = 0
+          @competition.save!
+          post :search, :from => 'where I am now', :distance => '50'
+        end
+
+        it 'should give a 200 status code' do
+          expect(response.status).to eq(200)
+        end
+
+        it 'should render the list Competition page' do
+          expect(response).to render_template("index")
+        end
+
+        it 'should find one competition' do
+          expect(assigns(:comps).length).to eq(1)
+        end
+      end
+    end
+
+    describe 'searching for competitions by date' do
+      context 'only after a certain date' do
+        before do
+          post :search, :start_date => Date.today
+        end
+
+        it 'should give a 200 status code' do
+          expect(response.status).to eq(200)
+        end
+
+        it 'should render the list Competition page' do
+          expect(response).to render_template("index")
+        end
+
+        it 'should find one competition' do
+          expect(assigns(:comps).length).to eq(1)
+        end
+      end
+      context 'between two dates' do
+        before do
+          post :search, :start_date => Date.today + 3.days,
+            :end_date => Date.today + 10.days
+        end
+
+        it 'should give a 200 status code' do
+          expect(response.status).to eq(200)
+        end
+
+        it 'should render the list Competition page' do
+          expect(response).to render_template("index")
+        end
+
+        it 'should find one competition' do
+          expect(assigns(:comps).length).to eq(1)
+        end
       end
     end
 

@@ -1,8 +1,25 @@
 class Competition < ActiveRecord::Base
 
-  scope :upcoming, lambda {
-    Competition.where('start_date > ?', Date.today)
+  scope :on_or_after, lambda { |start_date|
+    Competition.where('start_date >= ?', start_date).order(:start_date)
   }
+  scope :upcoming, lambda {
+    Competition.on_or_after(Date.today + 1.day)
+  }
+  scope :between, lambda { |start_date, end_date|
+    Competition.where('start_date between ? and ?', start_date, end_date).
+      order(:start_date)
+  }
+  scope :miles_from, lambda { |lat, lng, miles|
+    Competition.where('(point(?, ?) <@> point(longitude, latitude)) < ?',
+      lng, lat, miles).order(:start_date)
+  }
+  scope :keywords, lambda { |keywords|
+    keywords = '%' + keywords + '%'
+    Competition.where('name like ? or description like ?', keywords, keywords)
+  }
+
+# WHERE (point(-97.515678, 35.512363) <@> point(longitude, latitude)) < 10
 
   validates :name, :presence => :true
   validates :description, :presence => :true
@@ -45,8 +62,8 @@ class Competition < ActiveRecord::Base
 
   mount_uploader :image, CompetitionImageUploader
 
-  geocoded_by :location              # can also be an IP address
-  after_validation :geocode          # auto-fetch coordinates
+  geocoded_by :location
+  after_validation :geocode
 end
 
 

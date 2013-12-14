@@ -2,6 +2,7 @@ Competmansys::Application.routes.draw do
   devise_for :users
 
   get '/competitions/find'
+  post '/competitions/search'
   resources :competitions do
     resources :events
   end

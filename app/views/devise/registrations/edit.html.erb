@@ -31,6 +31,9 @@
     <%= hidden_field_tag "user[roles][]", "" %>
   </div>
 
+  <div><%= f.label :home_address %><i>(We need this for geocoding. For UK users a postcode should be enough.)</i><br />
+  <%= f.text_area :home_address %></div>
+
   <div><%= f.submit "Update" %></div>
 <% end %>
 
