@@ -9,6 +9,34 @@ SET standard_conforming_strings = on;
 SET check_function_bodies = false;
 SET client_min_messages = warning;
 
+--
+-- Name: cube; Type: EXTENSION; Schema: -; Owner: -
+--
+
+CREATE EXTENSION IF NOT EXISTS cube WITH SCHEMA public;
+
+
+--
+-- Name: EXTENSION cube; Type: COMMENT; Schema: -; Owner: -
+--
+
+COMMENT ON EXTENSION cube IS 'data type for multidimensional cubes';
+
+
+--
+-- Name: earthdistance; Type: EXTENSION; Schema: -; Owner: -
+--
+
+CREATE EXTENSION IF NOT EXISTS earthdistance WITH SCHEMA public;
+
+
+--
+-- Name: EXTENSION earthdistance; Type: COMMENT; Schema: -; Owner: -
+--
+
+COMMENT ON EXTENSION earthdistance IS 'calculate great-circle distances on the surface of the Earth';
+
+
 SET search_path = public, pg_catalog;
 
 SET default_tablespace = '';
@@ -45,6 +73,38 @@ CREATE SEQUENCE competition_administrators_id_seq
 --
 
 ALTER SEQUENCE competition_administrators_id_seq OWNED BY competition_administrators.id;
+
+
+--
+-- Name: competition_attendees; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE competition_attendees (
+    id integer NOT NULL,
+    user_id integer,
+    competition_id integer,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+--
+-- Name: competition_attendees_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE competition_attendees_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: competition_attendees_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE competition_attendees_id_seq OWNED BY competition_attendees.id;
 
 
 --
@@ -149,7 +209,8 @@ CREATE TABLE users (
     updated_at timestamp without time zone,
     roles_mask integer,
     latitude double precision,
-    longitude double precision
+    longitude double precision,
+    home_address character varying(255)
 );
 
 
@@ -183,6 +244,13 @@ ALTER TABLE ONLY competition_administrators ALTER COLUMN id SET DEFAULT nextval(
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY competition_attendees ALTER COLUMN id SET DEFAULT nextval('competition_attendees_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY competitions ALTER COLUMN id SET DEFAULT nextval('competitions_id_seq'::regclass);
 
 
@@ -206,6 +274,14 @@ ALTER TABLE ONLY users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regcl
 
 ALTER TABLE ONLY competition_administrators
     ADD CONSTRAINT competition_administrators_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: competition_attendees_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY competition_attendees
+    ADD CONSTRAINT competition_attendees_pkey PRIMARY KEY (id);
 
 
 --
@@ -278,3 +354,9 @@ INSERT INTO schema_migrations (version) VALUES ('20131212161655');
 INSERT INTO schema_migrations (version) VALUES ('20131214100830');
 
 INSERT INTO schema_migrations (version) VALUES ('20131214134639');
+
+INSERT INTO schema_migrations (version) VALUES ('20131214154851');
+
+INSERT INTO schema_migrations (version) VALUES ('20131214182122');
+
+INSERT INTO schema_migrations (version) VALUES ('20131214191101');

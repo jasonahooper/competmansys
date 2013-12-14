@@ -55,6 +55,7 @@ class Competition < ActiveRecord::Base
   belongs_to :user
 
   has_many :competition_administrators
+  has_many :competition_attendees
   has_many :events, :dependent => :destroy
 
   accepts_nested_attributes_for :events,
