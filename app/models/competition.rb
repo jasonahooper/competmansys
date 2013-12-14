@@ -45,4 +45,8 @@ class Competition < ActiveRecord::Base
 
   mount_uploader :image, CompetitionImageUploader
 
+  geocoded_by :location              # can also be an IP address
+  after_validation :geocode          # auto-fetch coordinates
 end
+
+

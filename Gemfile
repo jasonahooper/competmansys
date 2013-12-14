@@ -38,6 +38,8 @@ gem 'cancan'
 gem 'mini_magick'
 gem 'carrierwave'
 
+gem 'geocoder'
+
 gem 'simplecov', :require => false, :group => :test
 
 group :doc do

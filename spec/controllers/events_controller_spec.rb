@@ -2,8 +2,12 @@ require 'spec_helper'
 
 describe EventsController do
   before do
+    Competition.any_instance.stub(:geocode).and_return([1,1])
+
     @user = User.create!(:email => 'test@example.com', :password => 'password')
+
     file = fixture_file_upload('/sheffield.jpg','application/jpg')
+
     @competition = Competition.create!(
       :name => 'Test', :description => 'Test competition',
       :start_date => 7.days.from_now, :end_date => 7.days.from_now + 7.days,

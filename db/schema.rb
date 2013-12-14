@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131212161655) do
+ActiveRecord::Schema.define(version: 20131214100830) do
 
   create_table "competition_administrators", force: true do |t|
     t.integer  "competition_id"
@@ -31,6 +31,8 @@ ActiveRecord::Schema.define(version: 20131212161655) do
     t.date     "registration_close_date"
     t.integer  "user_id"
     t.string   "location"
+    t.float    "latitude"
+    t.float    "longitude"
   end
 
   create_table "events", force: true do |t|
