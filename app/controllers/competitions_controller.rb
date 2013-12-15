@@ -11,6 +11,11 @@ class CompetitionsController < ApplicationController
 
   def show
     @comp = Competition.find(params[:id])
+    @marker = Gmaps4rails.build_markers(@comp) do |comp, marker|
+      marker.lat comp.latitude
+      marker.lng comp.longitude
+      marker.infowindow comp.description
+    end
   end
 
   def destroy

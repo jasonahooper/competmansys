@@ -40,6 +40,9 @@ gem 'carrierwave'
 
 gem 'geocoder'
 
+gem 'underscore-rails'
+gem 'gmaps4rails'
+
 gem 'simplecov', :require => false, :group => :test
 
 group :doc do
