@@ -148,6 +148,38 @@ ALTER SEQUENCE competitions_id_seq OWNED BY competitions.id;
 
 
 --
+-- Name: event_registrations; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE event_registrations (
+    id integer NOT NULL,
+    event_id integer,
+    competition_attendee_id integer,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+--
+-- Name: event_registrations_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE event_registrations_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: event_registrations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE event_registrations_id_seq OWNED BY event_registrations.id;
+
+
+--
 -- Name: events; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -258,6 +290,13 @@ ALTER TABLE ONLY competitions ALTER COLUMN id SET DEFAULT nextval('competitions_
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY event_registrations ALTER COLUMN id SET DEFAULT nextval('event_registrations_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY events ALTER COLUMN id SET DEFAULT nextval('events_id_seq'::regclass);
 
 
@@ -290,6 +329,14 @@ ALTER TABLE ONLY competition_attendees
 
 ALTER TABLE ONLY competitions
     ADD CONSTRAINT competitions_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: event_registrations_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY event_registrations
+    ADD CONSTRAINT event_registrations_pkey PRIMARY KEY (id);
 
 
 --
@@ -360,3 +407,5 @@ INSERT INTO schema_migrations (version) VALUES ('20131214154851');
 INSERT INTO schema_migrations (version) VALUES ('20131214182122');
 
 INSERT INTO schema_migrations (version) VALUES ('20131214191101');
+
+INSERT INTO schema_migrations (version) VALUES ('20131215123725');

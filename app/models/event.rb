@@ -3,4 +3,5 @@ class Event < ActiveRecord::Base
   validates :description, :presence => true
 
   belongs_to :competition
+  has_many :event_registrations
 end
