@@ -21,8 +21,7 @@ describe CompetitionAttendeesController do
   describe 'a user indicates they will attend a competition' do
     before do
       post :create, :competition_id => @competition.id,
-        :competition_attendee => { :user_id => @user.id,
-        :competition_id => @competition.id}
+        :competition_attendee => { :user_id => @user.id}
     end
 
     it 'should create the CompetitionAttendee' do

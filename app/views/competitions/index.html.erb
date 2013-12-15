@@ -6,6 +6,7 @@
           <% @comps.each do |c| %>
             <li>
               <% if signed_in? %>
+                <%= link_to("Attend ", competition_competition_attendees_path(:competition_id => c.id, :competition_attendee => { :user_id => current_user.id }), :method => :post) %>
                 <%= link_to("Edit ", edit_competition_path(:id => c.id)) %>
                 <%= link_to("Delete ", competition_path(:id => c.id), :method => :delete) %>
               <% end %>

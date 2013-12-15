@@ -1,6 +1,7 @@
 class CompetitionAttendeesController < ApplicationController
   def create
     @attendee = CompetitionAttendee.new(competition_attendee_params)
+    @attendee.competition_id = params[:competition_id]
     if @attendee.save
       flash[:info] = "Attendance recorded successfully."
       redirect_to competitions_path
