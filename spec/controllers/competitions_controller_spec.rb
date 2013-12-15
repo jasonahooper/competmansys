@@ -153,8 +153,7 @@ describe CompetitionsController do
 
     describe 'deleting a competition' do
       before do
-        Event.create!(:competition_id => @competition.id, :name => 'Test Delete',
-          :description => 'test delete')
+        Event.make!(:competition_id => @competition.id)
         delete :destroy, { :id => @competition.id }
       end
 
@@ -224,7 +223,7 @@ describe CompetitionsController do
 
     before do
       @request.env["devise.mapping"] = Devise.mappings[:user]
-      @user = User.create!(:email => 'test@example.com', :password => 'password')
+      @user = User.make!
       sign_in @user
 
       file = fixture_file_upload('/sheffield.jpg','application/jpg')

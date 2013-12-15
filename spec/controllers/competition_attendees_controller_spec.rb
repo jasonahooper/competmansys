@@ -39,7 +39,7 @@ describe CompetitionAttendeesController do
 
   describe 'a user indicates they will no longer attend a competition' do
     before do
-      @competition_attendee = CompetitionAttendee.create!(
+      @competition_attendee = CompetitionAttendee.make!(
         :competition_id => @competition.id,
         :user_id => @user.id)
       delete :destroy, :competition_id => @competition.id,
