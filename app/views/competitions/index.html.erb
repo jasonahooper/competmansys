@@ -7,7 +7,7 @@
             <li>
               <% if signed_in? %>
                 <% if c.attendees.include?(current_user) %>
-                  <%= link_to("Skip ", competition_competition_attendee_path(:competition_id => c.id, :id => c.competition_attendees.find_by_user_id(current_user.id).id), :method => :delete) %>
+                  <%= link_to("Withdraw ", competition_competition_attendee_path(:competition_id => c.id, :id => c.competition_attendees.find_by_user_id(current_user.id).id), :method => :delete) %>
                 <% else %>
                   <%= link_to("Attend ", competition_competition_attendees_path(:competition_id => c.id, :competition_attendee => { :user_id => current_user.id }), :method => :post) %>
                 <% end %>
