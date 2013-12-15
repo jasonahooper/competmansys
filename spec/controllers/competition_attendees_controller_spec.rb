@@ -55,4 +55,24 @@ describe CompetitionAttendeesController do
     end
 
   end
+
+  describe 'a list of attendess is requested' do
+    before do
+      @competition_attendee = 5.times {CompetitionAttendee.make!(
+        :competition_id => @competition.id) }
+      get :index, :competition_id => @competition.id
+    end
+
+    it 'should return status 200' do
+      expect(response.status).to eq(200)
+    end
+
+    it 'should get a list of the attendees' do
+      expect(assigns(:attendees).count).to eq(5)
+    end
+
+    it 'should render the index page' do
+      expect(response).to render_template("index")
+    end
+  end
 end

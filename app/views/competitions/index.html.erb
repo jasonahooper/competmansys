@@ -16,8 +16,10 @@
               <% end %>
               <%= link_to("Info ", competition_path(:id => c.id)) %>
               <%= "#{c.name} in #{c.location} (from #{c.start_date} to #{c.end_date}) "%>
-              <%=link_to('Events:', competition_events_path(c.id))%>
+              <%= link_to('Events:', competition_events_path(c.id))%>
               <%= "#{c.events.count}"%>
+              <%= link_to_if(signed_in? && c.attendees.count > 0, 'Attendees:',competition_competition_attendees_path(c.id))%>
+              <%= c.attendees.count %>
             </li>
           <% end %>
         </ul>
