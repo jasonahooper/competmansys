@@ -2,7 +2,8 @@ require 'spec_helper'
 
 describe CompetitionAttendeesController do
   before do
-    Competition.any_instance.stub(:geocode).and_return([1,1])
+    Competition.any_instance.stub(:geocode)
+    User.any_instance.stub(:geocode)
 
     @user = User.create!(:email => 'test@example.com', :password => 'password')
 
@@ -34,6 +35,29 @@ describe CompetitionAttendeesController do
 
     it 'should set the competition_id' do
       expect(assigns(:attendee).competition_id).to eq(@competition.id)
+    end
+
+    it 'should redirect to the list Competition page' do
+      expect(response).to redirect_to(competitions_path)
+    end
+
+  end
+
+  describe 'a user indicates they will no longer attend a competition' do
+    before do
+      @competition_attendee = CompetitionAttendee.create!(
+        :competition_id => @competition.id,
+        :user_id => @user.id)
+      delete :destroy, :competition_id => @competition.id,
+        :id => @competition_attendee.id
+    end
+
+    it 'should delete the CompetitionAttendee' do
+      expect(CompetitionAttendee.count).to eq(0)
+    end
+
+    it 'should redirect to the list Competition page' do
+      expect(response).to redirect_to(competitions_path)
     end
 
   end
