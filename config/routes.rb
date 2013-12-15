@@ -4,7 +4,9 @@ Competmansys::Application.routes.draw do
   get '/competitions/find'
   post '/competitions/search'
   resources :competitions do
-    resources :competition_attendees
+    resources :competition_attendees do
+      resources :event_registrations
+    end
     resources :events
   end
   # The priority is based upon order of creation: first created -> highest priority.
