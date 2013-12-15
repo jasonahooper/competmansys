@@ -3,25 +3,16 @@ require 'spec_helper'
 describe EventRegistrationsController do
 
   before do
-    Competition.any_instance.stub(:geocode)
-    User.any_instance.stub(:geocode)
 
-    @user = User.create!(:email => 'test@example.com', :password => 'password')
+    @user = User.make!
 
     file = fixture_file_upload('/sheffield.jpg','application/jpg')
+    @competition = Competition.make!(:image => file, :user_id => @user.id)
 
-    @competition = Competition.create!(
-      :name => 'Test', :description => 'Test competition',
-      :start_date => 7.days.from_now, :end_date => 7.days.from_now + 7.days,
-      :image => file, :registration_close_date => 2.days.from_now,
-      :user_id => @user.id, :location => 'a test location')
-
-    @competition_attendee = CompetitionAttendee.create!(
+    @competition_attendee = CompetitionAttendee.make!(
       :competition_id => @competition.id, :user_id => @user.id)
 
-    @event = Event.create!(
-      :competition_id => @competition.id, :name => 'Test Event',
-        :description => 'Test Event Desc')
+    @event = Event.make!(:competition_id => @competition.id)
 
     sign_in @user
 
@@ -55,7 +46,7 @@ describe EventRegistrationsController do
 
   describe 'a user withdraws from an event' do
     before do
-      @event_registration = EventRegistration.create!(
+      @event_registration = EventRegistration.make!(
         :competition_attendee_id => @competition_attendee.id,
         :event_id => @event.id)
       delete :destroy, :competition_id => @competition.id,

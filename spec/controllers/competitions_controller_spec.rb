@@ -1,24 +1,15 @@
 require 'spec_helper'
 
 describe CompetitionsController do
-  before do
-    Competition.any_instance.stub(:geocode)
-    User.any_instance.stub(:geocode)
-  end
 
   context 'with an existing competition' do
     before do
+      @user = User.make!
 
-      @user = User.create!(:email => 'test@example.com', :password => 'password',
-        :latitude => 10, :longitude => 10)
       file = fixture_file_upload('/sheffield.jpg','application/jpg')
-      @competition = Competition.create(
-        :name => 'Test', :description => 'Test competition',
-        :start_date => 7.days.from_now, :end_date => 7.days.from_now + 7.days,
-        :image => file, :registration_close_date => 2.days.from_now,
-        :user_id => @user.id, :location => 'a test location',
-        :latitude => 10, :longitude => 10
-      )
+      @competition = Competition.make!(:image => file, :user_id => @user.id)
+
+      sign_in @user
     end
 
     describe 'finding a competition' do

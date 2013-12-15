@@ -2,23 +2,15 @@ require 'spec_helper'
 
 describe EventsController do
   before do
-    Competition.any_instance.stub(:geocode).and_return([1,1])
-
-    @user = User.create!(:email => 'test@example.com', :password => 'password')
+    @user = User.make!
 
     file = fixture_file_upload('/sheffield.jpg','application/jpg')
-
-    @competition = Competition.create!(
-      :name => 'Test', :description => 'Test competition',
-      :start_date => 7.days.from_now, :end_date => 7.days.from_now + 7.days,
-      :image => file, :registration_close_date => 2.days.from_now,
-      :user_id => @user.id, :location => 'a test location')
+    @competition = Competition.make!(:image => file, :user_id => @user.id)
   end
 
   context 'with an existing event' do
     before do
-      @event = Event.create!(:name => 'Test', :description => 'Test',
-        :competition => @competition)
+      @event = Event.make!(:competition_id => @competition.id)
     end
 
     describe 'listing events' do

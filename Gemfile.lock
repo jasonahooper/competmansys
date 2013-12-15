@@ -76,6 +76,7 @@ GEM
     docile (1.1.0)
     erubis (2.7.0)
     execjs (2.0.2)
+    ffaker (1.22.1)
     geocoder (1.1.6)
     gherkin (2.12.2)
       multi_json (~> 1.3)
@@ -92,6 +93,7 @@ GEM
     launchy (2.3.0)
       addressable (~> 2.3)
     libv8 (3.16.14.3)
+    machinist (2.0)
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
@@ -216,11 +218,13 @@ DEPENDENCIES
   cucumber-rails
   database_cleaner
   devise
+  ffaker
   geocoder
   gmaps4rails
   jbuilder (~> 1.2)
   jquery-rails
   launchy
+  machinist
   mini_magick
   pg
   pry-byebug

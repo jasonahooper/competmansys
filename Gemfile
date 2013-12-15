@@ -69,6 +69,8 @@ group :development, :test do
   gem 'database_cleaner'
   gem 'cucumber-rails', :require => false
   gem 'launchy'
+  gem 'machinist'
+  gem 'ffaker'
 end
 
 gem 'rails_12factor', group: :production
