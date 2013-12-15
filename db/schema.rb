@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131215123725) do
+ActiveRecord::Schema.define(version: 20131215204420) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "cube"
@@ -78,6 +78,8 @@ ActiveRecord::Schema.define(version: 20131215123725) do
     t.float    "latitude"
     t.float    "longitude"
     t.string   "home_address"
+    t.string   "first_name"
+    t.string   "last_name"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

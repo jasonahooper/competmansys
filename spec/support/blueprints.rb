@@ -2,9 +2,11 @@ require 'machinist/active_record'
 
 User.blueprint do
   email         { Faker::Internet.email }
+  first_name    { Faker::Name.first_name }
+  last_name     { Faker::Name.last_name }
   home_address  { Faker::AddressUK.postcode }
   password      { "password" }
-  latitude     { 0 }
+  latitude      { 0 }
   longitude     { 0 }
   object.stub(:geocode)
 end
@@ -17,7 +19,7 @@ Competition.blueprint do
   registration_close_date { 2.days.from_now }
   user_id     { User.make!.id }
   location    { 'somewhere out there' }
-  latitude   { 0 }
+  latitude    { 0 }
   longitude   { 0 }
   object.stub(:geocode)
 end

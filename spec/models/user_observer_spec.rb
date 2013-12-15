@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe UserObserver do
   before :each do
-    @user = User.new(:email => "test@example.com", :password => "password")
+    @user = User.make
     @observer = UserObserver.instance
   end
 

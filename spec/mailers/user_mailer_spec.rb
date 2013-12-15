@@ -2,15 +2,14 @@ require "spec_helper"
 
 describe UserMailer do
   before do
-    @user = User.new(:email => "test@example.com", :password => "password")
-    @user.save!
+    @user = User.make!
   end
 
   it "should queue the email" do
     ActionMailer::Base.deliveries.empty?.should be_false
   end
   it "should send the email to the new user" do
-    ActionMailer::Base.deliveries.last.to.should eq(["test@example.com"])
+    ActionMailer::Base.deliveries.last.to.should eq([@user.email])
   end
   it "should have a subject of welcome" do
     ActionMailer::Base.deliveries.last.subject.should

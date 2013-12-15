@@ -19,6 +19,9 @@ class User < ActiveRecord::Base
     roles.include?(role.to_s)
   end
 
+  validates :first_name, :presence => true
+  validates :last_name, :presence => true
+
   has_many :competitions
   has_many :competition_administrators
   has_many :competition_attendees
