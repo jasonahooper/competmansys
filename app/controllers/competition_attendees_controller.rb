@@ -25,7 +25,8 @@ class CompetitionAttendeesController < ApplicationController
   end
 
   def index
-    @attendees = Competition.find(params[:competition_id]).attendees
+    @comp = Competition.find(params[:competition_id])
+    @attendees = @comp.attendees
   end
 
   private
