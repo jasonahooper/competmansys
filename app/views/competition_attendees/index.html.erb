@@ -5,7 +5,7 @@
         <ul>
           <% @attendees.each do |a| %>
             <li>
-              <%= a.first_name a.last_name a.email %>
+              <%= "#{a.first_name} #{a.last_name} #{a.email}" %>
             </li>
           <% end %>
         </ul>
