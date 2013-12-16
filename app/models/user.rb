@@ -25,6 +25,9 @@ class User < ActiveRecord::Base
   has_many :competitions
   has_many :competition_administrators
   has_many :competition_attendees
+  has_many :attending, :through => :competition_attendees, :source => :competition
+  has_many :registrations, :through => :competition_attendees, :source => :event_registrations
+  has_many :entered, :through => :registrations, :source => :event
 
   geocoded_by :home_address
   after_validation :geocode

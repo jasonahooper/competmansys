@@ -16,8 +16,8 @@
             <%= link_to("Edit ", edit_competition_event_path(:competition_id => e.competition_id, :id => e.id)) %>
           <% end %>
           <%= "#{e.name} - #{e.description}" %>
-          <%= link_to_if(signed_in? && e.users.count > 0, 'Registrants:','#')%>
-          <%= e.users.count %>
+          <%= link_to_if(signed_in? && e.entries.count > 0, 'Entries:','#')%>
+          <%= e.entries.count %>
         </li>
       <% end %>
     </ul>

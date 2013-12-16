@@ -5,5 +5,5 @@ class Event < ActiveRecord::Base
   belongs_to :competition
   has_many :event_registrations
   has_many :registrants, :through => :event_registrations, :source => :competition_attendee
-  has_many :users, :through => :registrants
+  has_many :entries, :through => :registrants, :source => :user
 end
