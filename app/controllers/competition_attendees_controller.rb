@@ -24,11 +24,6 @@ class CompetitionAttendeesController < ApplicationController
     end
   end
 
-  def index
-    @comp = Competition.find(params[:competition_id])
-    @attendees = @comp.attendees
-  end
-
   private
   def competition_attendee_params
     params.require(:competition_attendee).permit(:competition_id, :user_id)

@@ -48,6 +48,11 @@ class EventsController < ApplicationController
     end
   end
 
+  def entrants
+    @event = Event.find(params[:event_id])
+    @entrants = @event.entrants
+  end
+
   private
   def event_params
     params.require(:event).permit(:name, :description, :competition_id)

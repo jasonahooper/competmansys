@@ -55,6 +55,27 @@ describe EventsController do
 
     end
 
+    describe 'a list of entrants for an event' do
+      before do
+        @attendee = CompetitionAttendee.make!(:competition_id => @competition.id)
+        @entry = EventRegistration.make!(:competition_attendee_id => @attendee.id,
+          :event_id => @event.id)
+        get :entrants, :competition_id => @competition.id, :event_id => @event.id
+      end
+
+      it 'should return status 200' do
+        expect(response.status).to eq(200)
+      end
+
+      it 'should get a list of the entrants' do
+        expect(assigns(:entrants).count).to eq(1)
+      end
+
+      it 'should render the entrants page' do
+        expect(response).to render_template("entrants")
+      end
+    end
+
   end
 
   describe 'creating a new event' do

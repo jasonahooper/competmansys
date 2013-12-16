@@ -1,0 +1,14 @@
+<div id='event-entrant-index'>
+  <div class="row">
+    <div class="span9">
+      <h2>List Entrants for Event: <%=@event.name%></h2>
+        <ul>
+          <% @entrants.each do |a| %>
+            <li>
+              <%= "#{a.first_name} #{a.last_name} #{a.email}" %>
+            </li>
+          <% end %>
+        </ul>
+    </div>
+  </div>
+</div>
