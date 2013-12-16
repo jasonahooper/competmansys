@@ -6,7 +6,7 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 @user = User.create!(:email => 'jason.hooper@talk21.com', :password => 'password',
-  :roles_mask => 2)
+  :roles_mask => 3, :first_name => 'Jason', :last_name => 'Hooper')
 
 @comp = Competition.create!(:name => 'Archery Test', :description => 'An Archery Competition',
   :start_date => '2014-1-1', :end_date => '2014-1-1', :registration_close_date => '2014-1-1',
