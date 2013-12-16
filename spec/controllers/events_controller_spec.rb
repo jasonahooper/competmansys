@@ -3,9 +3,7 @@ require 'spec_helper'
 describe EventsController do
   before do
     @user = User.make!
-
-    file = fixture_file_upload('/sheffield.jpg','application/jpg')
-    @competition = Competition.make!(:image => file, :user_id => @user.id)
+    @competition = Competition.make!(:user_id => @user.id)
   end
 
   context 'with an existing event' do

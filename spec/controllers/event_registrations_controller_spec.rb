@@ -3,19 +3,12 @@ require 'spec_helper'
 describe EventRegistrationsController do
 
   before do
-
     @user = User.make!
-
-    file = fixture_file_upload('/sheffield.jpg','application/jpg')
-    @competition = Competition.make!(:image => file, :user_id => @user.id)
-
+    @competition = Competition.make!(:user_id => @user.id)
     @competition_attendee = CompetitionAttendee.make!(
       :competition_id => @competition.id, :user_id => @user.id)
-
     @event = Event.make!(:competition_id => @competition.id)
-
     sign_in @user
-
   end
 
   describe 'a user registers for an event' do

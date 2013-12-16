@@ -8,10 +8,7 @@ describe CompetitionsController do
   context 'with an existing competition' do
     before do
       @user = User.make!
-
-      file = fixture_file_upload('/sheffield.jpg','application/jpg')
-      @competition = Competition.make!(:image => file, :user_id => @user.id)
-
+      @competition = Competition.make!(:user_id => @user.id)
       sign_in @user
     end
 
@@ -229,7 +226,7 @@ describe CompetitionsController do
       @user = User.make!
       sign_in @user
 
-      file = fixture_file_upload('/sheffield.jpg','application/jpg')
+      file = fixture_file_upload('/empty.jpg','application/jpg')
       valid_params = { :competition =>
         {
           :name => 'Test', :description => 'Test competition',

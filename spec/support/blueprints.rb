@@ -19,6 +19,7 @@ Competition.blueprint do
   registration_close_date { 2.days.from_now }
   user_id     { User.make!.id }
   location    { 'somewhere out there' }
+  image       { File.open('spec/fixtures/empty.jpg') }
   latitude    { 0 }
   longitude   { 0 }
   object.stub(:geocode)

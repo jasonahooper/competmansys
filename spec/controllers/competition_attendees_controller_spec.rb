@@ -2,15 +2,9 @@ require 'spec_helper'
 
 describe CompetitionAttendeesController do
   before do
-
     @user = User.make!
-
-    file = fixture_file_upload('/sheffield.jpg','application/jpg')
-    @competition = Competition.make!(
-      :image => file, :user_id => @user.id)
-
+    @competition = Competition.make!(:user_id => @user.id)
     sign_in @user
-
   end
 
   describe 'a user indicates they will attend a competition' do
