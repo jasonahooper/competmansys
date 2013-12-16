@@ -242,7 +242,9 @@ CREATE TABLE users (
     roles_mask integer,
     latitude double precision,
     longitude double precision,
-    home_address character varying(255)
+    home_address character varying(255),
+    first_name character varying(255),
+    last_name character varying(255)
 );
 
 
@@ -409,3 +411,5 @@ INSERT INTO schema_migrations (version) VALUES ('20131214182122');
 INSERT INTO schema_migrations (version) VALUES ('20131214191101');
 
 INSERT INTO schema_migrations (version) VALUES ('20131215123725');
+
+INSERT INTO schema_migrations (version) VALUES ('20131215204420');
