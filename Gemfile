@@ -71,6 +71,7 @@ group :development, :test do
   gem 'launchy'
   gem 'machinist'
   gem 'ffaker'
+  gem 'erd'
 end
 
 gem 'rails_12factor', group: :production
