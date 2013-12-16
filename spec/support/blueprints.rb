@@ -8,7 +8,7 @@ User.blueprint do
   password      { "password" }
   latitude      { 0 }
   longitude     { 0 }
-  object.stub(:geocode)
+  object.stubs(:geocode)
 end
 
 Competition.blueprint do
@@ -22,7 +22,7 @@ Competition.blueprint do
   image       { File.open('spec/fixtures/empty.jpg') }
   latitude    { 0 }
   longitude   { 0 }
-  object.stub(:geocode)
+  object.stubs(:geocode)
 end
 
 CompetitionAttendee.blueprint do

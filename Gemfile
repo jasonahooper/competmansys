@@ -72,6 +72,7 @@ group :development, :test do
   gem 'machinist'
   gem 'ffaker'
   gem 'erd'
+  gem 'mocha'
 end
 
 gem 'rails_12factor', group: :production
