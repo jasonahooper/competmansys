@@ -1,0 +1,12 @@
+#search-results {
+  cursor: pointer;
+}
+
+#search-feedback.error {
+  background-color: pink;
+}
+
+#search-feedback.no-errors {
+  background-color: lightgreen;
+}
+

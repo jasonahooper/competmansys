@@ -41,7 +41,7 @@
 </div>
 
 <script type="text/javascript">
-
+$(document).ready(function() {
   handler = Gmaps.build('Google');
   handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
     markers = handler.addMarkers(<%= raw @marker.to_json %>);
@@ -49,5 +49,5 @@
     handler.fitMapToBounds();
     handler.getMap().setZoom(10);
    });
-
+});
 </script>

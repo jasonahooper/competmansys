@@ -34,7 +34,6 @@ describe EventRegistrationsController do
     it 'should redirect to the list event page' do
       expect(response).to redirect_to(competition_events_path(@competition.id))
     end
-
   end
 
   describe 'a user withdraws from an event' do
@@ -54,7 +53,51 @@ describe EventRegistrationsController do
     it 'should redirect to the list event page' do
       expect(response).to redirect_to(competition_events_path(@competition.id))
     end
-
   end
 
+  describe 'results are updated for an event registration' do
+    before do
+      @event_registration = EventRegistration.make!(
+        :competition_attendee_id => @competition_attendee.id,
+        :event_id => @event.id)
+
+      patch :update, :competition_id => @competition.id,
+        :competition_attendee_id => @competition_attendee.id,
+        :id => @event_registration.id, :event_registration => {
+          :result => '1:23:31', :position => 1 }
+    end
+    it 'should update the event results' do
+      expect(assigns(:event_registration).result).to eq('1:23:31')
+      expect(assigns(:event_registration).position).to eq(1)
+    end
+  end
+
+  describe 'results are edited for an event registration' do
+    before do
+      @event_registration = EventRegistration.make!(
+        :competition_attendee_id => @competition_attendee.id,
+        :event_id => @event.id)
+      get :edit, :competition_id => @competition.id,
+        :competition_attendee_id => @competition_attendee.id,
+        :id => @event_registration.id
+    end
+    it 'should render the edit page' do
+      expect(response).to render_template("edit")
+    end
+  end
+
+  describe 'results are entered for a whole event' do
+    before do
+      @entrants = []
+      5.times do
+        @entrants << CompetitionAttendee.make!(:competition_id => @competition.id)
+      end
+      @entrants.each do |entrant|
+        EventRegistration.make!(
+          :competition_attendee_id => entrant.id, :event_id => @event.id)
+      end
+      binding.pry
+    end
+    it 'should allow entry of the event results'
+  end
 end

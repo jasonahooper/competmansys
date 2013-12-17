@@ -23,8 +23,24 @@ class EventRegistrationsController < ApplicationController
     redirect_to competition_events_path(params[:competition_id])
   end
 
+  def update
+    @event_registration = EventRegistration.find(params[:id])
+    if @event_registration.update_attributes(event_registration_params)
+      flash[:info] = "Registration updated successfully."
+    else
+      flash[:alert] = "Error updating registration!\n"
+      flash[:alert] << @comp.errors.full_messages.join(".\n")
+    end
+    redirect_to competition_events_path(params[:competition_id])
+  end
+
+  def edit
+    @event_registration = EventRegistration.find(params[:id])
+  end
+
   private
   def event_registration_params
-    params.require(:event_registration).permit(:event_id, :competition_attendee_id)
+    params.require(:event_registration).permit(:event_id, :competition_attendee_id,
+      :result, :position)
   end
 end
