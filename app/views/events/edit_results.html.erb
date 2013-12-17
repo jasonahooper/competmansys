@@ -1,7 +1,13 @@
-<%= form_for [@comp, @event], :html => { :class => 'form-inline' } do |f| %>
-  <h3>Results for <%= @event.name %></h3>
-  <%= f.fields_for :event_registrations do |r| %>
-    <%= render partial: "event_registrations/form", :locals => {:f => r} %>
-  <% end %>
-  <%= f.button "Save" %>
-<% end %>
+<div id='edit-event-results'>
+  <div class="row">
+    <div class='span9'>
+      <h2>Results for <%= @event.name %></h2>
+      <%= form_for [@comp, @event], :html => { :class => 'form-inline' } do |f| %>
+        <%= f.fields_for :event_registrations do |r| %>
+          <%= render partial: "event_registrations/form", :locals => {:f => r} %>
+        <% end %>
+        <%= f.button "Save" %>
+      <% end %>
+    </div>
+  </div>
+</div>
