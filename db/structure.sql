@@ -124,7 +124,8 @@ CREATE TABLE competitions (
     user_id integer,
     location character varying(255),
     latitude double precision,
-    longitude double precision
+    longitude double precision,
+    justgiving_id integer
 );
 
 
@@ -413,3 +414,5 @@ INSERT INTO schema_migrations (version) VALUES ('20131214191101');
 INSERT INTO schema_migrations (version) VALUES ('20131215123725');
 
 INSERT INTO schema_migrations (version) VALUES ('20131215204420');
+
+INSERT INTO schema_migrations (version) VALUES ('20131216165910');

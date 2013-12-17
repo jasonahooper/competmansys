@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe CompetitionsController do
   before do
-    Competition.any_instance.stub(:geocode)
+    Competition.any_instance.stubs(:geocode)
   end
 
   context 'with an existing competition' do
