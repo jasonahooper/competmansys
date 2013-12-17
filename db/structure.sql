@@ -157,7 +157,9 @@ CREATE TABLE event_registrations (
     event_id integer,
     competition_attendee_id integer,
     created_at timestamp without time zone,
-    updated_at timestamp without time zone
+    updated_at timestamp without time zone,
+    result character varying(255),
+    "position" integer
 );
 
 
@@ -416,3 +418,8 @@ INSERT INTO schema_migrations (version) VALUES ('20131215123725');
 INSERT INTO schema_migrations (version) VALUES ('20131215204420');
 
 INSERT INTO schema_migrations (version) VALUES ('20131216165910');
+<<<<<<< HEAD
+=======
+
+INSERT INTO schema_migrations (version) VALUES ('20131217105054');
+>>>>>>> results

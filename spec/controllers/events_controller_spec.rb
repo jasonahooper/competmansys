@@ -76,6 +76,24 @@ describe EventsController do
       end
     end
 
+    describe 'results are edited for a whole event' do
+      before do
+        @entrants = []
+        5.times do
+          @entrants << CompetitionAttendee.make!(:competition_id => @competition.id)
+        end
+        @entrants.each_with_index do |entrant, i|
+          er = EventRegistration.make(
+            :competition_attendee_id => entrant.id, :event_id => @event.id)
+          er.position = 5-i
+          er.save!
+        end
+        get :edit_results, :competition_id => @competition.id, :event_id => @event.id
+      end
+      it 'should allow editing of the event results' do
+        expect(assigns(:event).event_registrations.count).to eq(5)
+      end
+    end
   end
 
   describe 'creating a new event' do
