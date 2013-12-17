@@ -16,7 +16,9 @@
 /tmp
 
 # Ignore uploads
-public/uploads
+public/uploads/test
+public/uploads/development
+public/uploads/tmp
 
 # Ignore coverage
 coverage/
