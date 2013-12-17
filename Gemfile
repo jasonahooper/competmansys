@@ -37,6 +37,7 @@ gem 'cancan'
 
 gem 'mini_magick'
 gem 'carrierwave'
+gem 'fog'
 
 gem 'geocoder'
 
