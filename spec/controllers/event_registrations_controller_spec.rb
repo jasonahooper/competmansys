@@ -85,19 +85,4 @@ describe EventRegistrationsController do
       expect(response).to render_template("edit")
     end
   end
-
-  describe 'results are entered for a whole event' do
-    before do
-      @entrants = []
-      5.times do
-        @entrants << CompetitionAttendee.make!(:competition_id => @competition.id)
-      end
-      @entrants.each do |entrant|
-        EventRegistration.make!(
-          :competition_attendee_id => entrant.id, :event_id => @event.id)
-      end
-      binding.pry
-    end
-    it 'should allow entry of the event results'
-  end
 end

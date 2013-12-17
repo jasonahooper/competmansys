@@ -10,6 +10,7 @@ Competmansys::Application.routes.draw do
     end
     resources :events do
       get :entrants
+      get :edit_results
     end
   end
   # The priority is based upon order of creation: first created -> highest priority.
