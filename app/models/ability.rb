@@ -9,7 +9,8 @@ class Ability
     can :manage, CompetitionAttendee if user.is? :competition_owner
     can :manage, EventRegistration if user.is? :competition_owner
     can :read, :all
-    # can :manage, :all
+    can :find, :all
+    can :search, :all
 
     # Define abilities for the passed in user here. For example:
     #
