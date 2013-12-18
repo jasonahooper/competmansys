@@ -192,7 +192,8 @@ CREATE TABLE events (
     name character varying(255),
     description character varying(255),
     created_at timestamp without time zone,
-    updated_at timestamp without time zone
+    updated_at timestamp without time zone,
+    image character varying(255)
 );
 
 
@@ -418,8 +419,7 @@ INSERT INTO schema_migrations (version) VALUES ('20131215123725');
 INSERT INTO schema_migrations (version) VALUES ('20131215204420');
 
 INSERT INTO schema_migrations (version) VALUES ('20131216165910');
-<<<<<<< HEAD
-=======
 
 INSERT INTO schema_migrations (version) VALUES ('20131217105054');
->>>>>>> results
+
+INSERT INTO schema_migrations (version) VALUES ('20131218133407');

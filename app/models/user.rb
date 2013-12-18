@@ -31,4 +31,8 @@ class User < ActiveRecord::Base
 
   geocoded_by :home_address
   after_validation :geocode
+
+  def full_name
+    return self.first_name + ' ' + self.last_name
+  end
 end

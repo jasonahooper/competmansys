@@ -1,8 +1,6 @@
 <div class='results'>
   <%= f.fields_for :entry do |e| %>
-    <%= e.hidden_field :id %>
-    <%= e.text_field :first_name, :disabled => true, :class => 'input-small'%>
-    <%= e.text_field :last_name, :disabled => true, :class => 'input-small' %>
+    <%= e.text_field :full_name, :disabled => true, :class => 'input-small'%>
   <% end %>
   <%= f.hidden_field :id %>
   <%= f.label :result %>

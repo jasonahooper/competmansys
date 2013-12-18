@@ -13,10 +13,10 @@
   :image => open("app/assets/images/bangalore.jpg"), :location => 'Bangalore, India',
   :user_id => @user.id)
 
-Event.create!(:name => 'Recurve', :description => 'Recurve', :competition_id => @comp.id)
-Event.create!(:name => 'Compound', :description => 'Compound', :competition_id => @comp.id)
-Event.create!(:name => 'Team Recurve', :description => 'Team Recurve', :competition_id => @comp.id)
-Event.create!(:name => 'Team Compound', :description => 'Team Compound', :competition_id => @comp.id)
+Event.create!(:name => 'Recurve', :competition_id => @comp.id)
+Event.create!(:name => 'Compound', :competition_id => @comp.id)
+Event.create!(:name => 'Team Recurve', :competition_id => @comp.id)
+Event.create!(:name => 'Team Compound', :competition_id => @comp.id)
 
 @comp = Competition.create!(:name => 'Athletics Test', :description => 'An Athletics Competition',
   :start_date => '2014-2-1', :end_date => '2014-2-1', :registration_close_date => '2014-2-1',

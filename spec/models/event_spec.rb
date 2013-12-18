@@ -5,5 +5,4 @@ describe Event do
   it { should have_many(:event_registrations) }
 
   it { should validate_presence_of(:name) }
-  it { should validate_presence_of(:description) }
 end
