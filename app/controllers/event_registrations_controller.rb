@@ -1,5 +1,7 @@
 class EventRegistrationsController < ApplicationController
 
+  before_filter :authenticate_user!
+
   def create
     @registration = EventRegistration.new(event_registration_params)
     @registration.competition_attendee_id = params[:competition_attendee_id]

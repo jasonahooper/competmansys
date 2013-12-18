@@ -1,4 +1,7 @@
 class CompetitionAttendeesController < ApplicationController
+
+  before_filter :authenticate_user!
+
   def create
     @attendee = CompetitionAttendee.new(competition_attendee_params)
     @attendee.competition_id = params[:competition_id]

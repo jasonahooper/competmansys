@@ -1,5 +1,7 @@
 class EventsController < ApplicationController
 
+  before_filter :authenticate_user!, :except => [ :show, :index ]
+
   before_action do
     @comp = Competition.find(params[:competition_id])
   end

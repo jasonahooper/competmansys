@@ -1,5 +1,7 @@
 class CompetitionsController < ApplicationController
 
+  before_filter :authenticate_user!, :except => [ :find, :search, :show ]
+
   def index
     @comps = Competition.all
   end

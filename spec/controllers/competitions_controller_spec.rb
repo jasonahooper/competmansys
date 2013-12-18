@@ -3,13 +3,13 @@ require 'spec_helper'
 describe CompetitionsController do
   before do
     Competition.any_instance.stubs(:geocode)
+    @user = User.make!
+    sign_in @user
   end
 
   context 'with an existing competition' do
     before do
-      @user = User.make!
       @competition = Competition.make!(:user_id => @user.id)
-      sign_in @user
     end
 
     describe 'finding a competition' do
@@ -220,11 +220,11 @@ describe CompetitionsController do
         expect(response).to render_template("attendees")
       end
     end
-
   end
 
   describe 'creating a new competition' do
     before do
+      @request.env["devise.mapping"] = Devise.mappings[:user]
       get :new
     end
 
