@@ -36,4 +36,13 @@ describe Competition do
   end
 
   it { should accept_nested_attributes_for(:events) }
+
+  it 'should return upcoming competitions starting after today' do
+    Competition.make!(:start_date => Date.today, :registration_close_date => Date.today)
+    Competition.make!(:start_date => Date.tomorrow, :registration_close_date => Date.today)
+    (Competition.upcoming.count).should eq(1)
+    (Competition.after(Date.yesterday).count).should eq(2)
+    (Competition.between(Date.today,Date.tomorrow).count).should eq(2)
+  end
+
 end
