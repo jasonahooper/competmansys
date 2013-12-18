@@ -1,14 +1,14 @@
 <div id='show-event-results'>
   <div class='row'>
     <div class='span9'>
-      <h2>Results for <%=@event.name%></h2>
+      <h2>Results for <%= @event.name %></h2>
       <ul>
-      <% @event.event_registrations.each do |er| %>
+      <% @event.event_registrations.order(:position).each do |er| %>
         <li>
-          <span><%=er.position%></span>
-          <span><%=er.result%></span>
-          <span><%=er.entry.first_name%></span>
-          <span><%=er.entry.last_name%></span>
+          <span><%= er.position %></span>
+          <span><%= er.result %></span>
+          <span><%= er.entry.first_name %></span>
+          <span><%= er.entry.last_name %></span>
         </li>
       <% end %>
       </ul>
