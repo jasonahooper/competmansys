@@ -15,8 +15,8 @@ class Competition < ActiveRecord::Base
       lng, lat, miles).order(:start_date)
   }
   scope :keywords, lambda { |keywords|
-    keywords = '%' + keywords + '%'
-    Competition.where('name like ? or description like ?', keywords, keywords)
+    keywords = '%' + keywords.downcase + '%'
+    Competition.where('lower(name) like ? or lower(description) like ?', keywords, keywords)
   }
 
 # WHERE (point(-97.515678, 35.512363) <@> point(longitude, latitude)) < 10
