@@ -1,5 +1,5 @@
 class EventsController < ApplicationController
-  before_filter :authenticate_user!, :except => [ :show, :index ]
+  before_filter :authenticate_user!, :except => [ :show, :index, :show_results ]
   before_filter do
     params[:event] = event_params if params[:event]
   end

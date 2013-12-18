@@ -11,6 +11,7 @@ class Ability
     can :read, :all
     can :find, :all
     can :search, :all
+    can :show_results, :all
 
     # Define abilities for the passed in user here. For example:
     #
