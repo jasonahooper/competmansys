@@ -85,4 +85,6 @@ Competmansys::Application.configure do
   password:             ENV['emailpass'],
   authentication:       'plain',
   enable_starttls_auto: true  }
+
+  config.action_mailer.default_url_options = { :host => 'ancient-river-4609.herokuapp.com' }
 end
