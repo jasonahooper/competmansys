@@ -7,7 +7,7 @@
             <li>
               <%= image_tag c.image.thumb, :class => 'comp-thumb' %>
               <p class='comp-list-info'>
-                <%= "#{c.name} in #{c.location} (from #{c.start_date} to #{c.end_date}) "%>
+                <%= "#{c.name} in #{c.location} (from #{c.start_date.to_formatted_s(:rfc822)} to #{c.end_date.to_formatted_s(:rfc822)}) "%>
               </p>
               <nav>
                 <%= link_to("Info ", competition_path(:id => c.id)) %>
