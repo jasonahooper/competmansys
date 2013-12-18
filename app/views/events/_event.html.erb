@@ -15,3 +15,4 @@
 </nav>
 <%= link_to_if(signed_in? && e.entrants.count > 0, 'Entrants:',competition_event_entrants_path(:competition_id => e.competition_id, :event_id => e.id))%>
 <%= e.entrants.count %>
+<%= link_to_if(e.event_registrations.sum(:position) > 0, 'Results',competition_event_show_results_path(e.competition.id, e.id)) %>
