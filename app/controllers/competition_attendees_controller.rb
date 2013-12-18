@@ -1,6 +1,9 @@
 class CompetitionAttendeesController < ApplicationController
-
   before_filter :authenticate_user!
+  before_filter do
+    params[:competition_attendee] = competition_attendee_params if params[:competition_attendee]
+  end
+  load_and_authorize_resource
 
   def create
     @attendee = CompetitionAttendee.new(competition_attendee_params)

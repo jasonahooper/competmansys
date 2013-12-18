@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe CompetitionAttendeesController do
   before do
-    @user = User.make!
+    @user = User.make!(:competition_owner)
     @competition = Competition.make!(:user_id => @user.id)
     sign_in @user
   end

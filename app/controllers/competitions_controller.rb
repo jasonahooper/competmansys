@@ -1,6 +1,9 @@
 class CompetitionsController < ApplicationController
-
   before_filter :authenticate_user!, :except => [ :find, :search, :show ]
+  before_filter do
+    params[:competition] = competition_params if params[:competition]
+  end
+  load_and_authorize_resource
 
   def index
     @comps = Competition.all

@@ -11,6 +11,10 @@ User.blueprint do
   object.stubs(:geocode)
 end
 
+User.blueprint(:competition_owner) do
+  roles         { ["competition_owner"] }
+end
+
 Competition.blueprint do
   name        { 'Test' }
   description { 'Test competition' }

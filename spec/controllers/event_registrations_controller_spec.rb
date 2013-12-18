@@ -3,7 +3,7 @@ require 'spec_helper'
 describe EventRegistrationsController do
 
   before do
-    @user = User.make!
+    @user = User.make!(:competition_owner)
     @competition = Competition.make!(:user_id => @user.id)
     @competition_attendee = CompetitionAttendee.make!(
       :competition_id => @competition.id, :user_id => @user.id)

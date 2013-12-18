@@ -3,7 +3,7 @@ require 'spec_helper'
 describe CompetitionsController do
   before do
     Competition.any_instance.stubs(:geocode)
-    @user = User.make!
+    @user = User.make!(:competition_owner)
     sign_in @user
   end
 
@@ -242,8 +242,6 @@ describe CompetitionsController do
 
     before do
       @request.env["devise.mapping"] = Devise.mappings[:user]
-      @user = User.make!
-      sign_in @user
 
       file = fixture_file_upload('/empty.jpg','application/jpg')
       valid_params = { :competition =>

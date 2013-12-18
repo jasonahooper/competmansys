@@ -2,8 +2,14 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
+    user ||= User.new
     can :manage, :all if user.is? :admin
-    can :create, Competition if user.is? :competition_owner
+    can :manage, Competition if user.is? :competition_owner
+    can :manage, Event if user.is? :competition_owner
+    can :manage, CompetitionAttendee if user.is? :competition_owner
+    can :manage, EventRegistration if user.is? :competition_owner
+    can :read, :all
+    # can :manage, :all
 
     # Define abilities for the passed in user here. For example:
     #
