@@ -1,41 +1,33 @@
 <div id='competition-show'>
   <div class="row">
     <div class="span9">
-      <h2>Show Competition:</h2>
+      <h2>Competition information for <%= @comp.name %></h2>
     </div>
   </div>
   <div class="row">
-    <div class="span6">
-      <dl>
-        <dt>Name:</dt>
-        <dd><%= @comp.name %></dd>
-        <dt>Description:</dt>
-        <dd><%= @comp.description %></dd>
-        <dt>Start date:</dt>
-        <dd><%= @comp.start_date %></dd>
-        <dt>End date:</dt>
-        <dd><%= @comp.end_date %></dd>
-        <dt>Registration close date:</dt>
-        <dd><%= @comp.registration_close_date %></dd>
-        <dt>Location:</dt>
-        <dd><%= @comp.location %></dd>
-        <dt>Events:</dt>
-        <dd><%= @comp.events.map {|e| e.name}.join(',') %></dd>
-      </dl>
+    <div class="span4">
+      <p><%= @comp.description %></p>
+      <p><%="Running from #{@comp.start_date} to #{@comp.end_date}."%></p>
+      <p><%="Register before #{@comp.registration_close_date}."%></p>
+      <p>Located in <%= @comp.location %>.</p>
+      <div id="map">
+      </div>
       <% if signed_in? %>
-        <%= link_to("Edit", edit_competition_path(@comp.id))%>
+        <%= link_to("Edit Competition", edit_competition_path(@comp.id))%>
       <% end %>
     </div>
-    <div class="span3">
-      <h5>Image:</h5>
+    <div class="span5">
       <div class="image">
         <%= image_tag @comp.image %>
       </div>
     </div>
-    <div class="span3">
-      <h5>Map:</h5>
-      <div id="map">
-      </div>
+  </div>
+  <div class="row">
+    <div class="span9">
+      <dl>
+        <dt>Events:</dt>
+        <dd><%= @comp.events.map {|e| e.name}.join(',') %></dd>
+      </dl>
     </div>
   </div>
 </div>

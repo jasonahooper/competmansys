@@ -2,24 +2,29 @@
   <div class="row">
     <div class="span9">
       <h2>List Competitions:</h2>
-        <ul>
+        <ul class="comp-list">
           <% @comps.each do |c| %>
             <li>
-              <% if signed_in? %>
-                <% if c.attendees.include?(current_user) %>
-                  <%= link_to("Withdraw ", competition_competition_attendee_path(:competition_id => c.id, :id => c.competition_attendees.find_by_user_id(current_user.id).id), :method => :delete) %>
-                <% else %>
-                  <%= link_to("Attend ", competition_competition_attendees_path(:competition_id => c.id, :competition_attendee => { :user_id => current_user.id }), :method => :post) %>
+              <%= image_tag c.image.thumb, :class => 'comp-thumb' %>
+              <p class='comp-list-info'>
+                <%= "#{c.name} in #{c.location} (from #{c.start_date} to #{c.end_date}) "%>
+              </p>
+              <nav>
+                <%= link_to("Info ", competition_path(:id => c.id)) %>
+                <% if signed_in? %>
+                  <% if c.attendees.include?(current_user) %>
+                    <%= link_to("Withdraw ", competition_competition_attendee_path(:competition_id => c.id, :id => c.competition_attendees.find_by_user_id(current_user.id).id), :method => :delete) %>
+                  <% else %>
+                    <%= link_to("Attend ", competition_competition_attendees_path(:competition_id => c.id, :competition_attendee => { :user_id => current_user.id }), :method => :post) %>
+                  <% end %>
+                  <%= link_to("Edit ", edit_competition_path(:id => c.id)) %>
+                  <%= link_to("Delete ", competition_path(:id => c.id), :method => :delete) %>
                 <% end %>
-                <%= link_to("Edit ", edit_competition_path(:id => c.id)) %>
-                <%= link_to("Delete ", competition_path(:id => c.id), :method => :delete) %>
-              <% end %>
-              <%= link_to("Info ", competition_path(:id => c.id)) %>
-              <%= "#{c.name} in #{c.location} (from #{c.start_date} to #{c.end_date}) "%>
-              <%= link_to('Events:', competition_events_path(c.id))%>
-              <%= "#{c.events.count}"%>
-              <%= link_to_if(signed_in? && c.attendees.count > 0, 'Attendees:',competition_attendees_path(c.id))%>
-              <%= c.attendees.count %>
+                <%= link_to('Events:', competition_events_path(c.id))%>
+                <%= "#{c.events.count}"%>
+                <%= link_to_if(signed_in? && c.attendees.count > 0, 'Attendees:',competition_attendees_path(c.id))%>
+                <%= c.attendees.count %>
+              </nav>
             </li>
           <% end %>
         </ul>

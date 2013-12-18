@@ -8,4 +8,13 @@ body {
   background: -ms-linear-gradient(left, rgba(178,225,255,1) 0%,rgba(102,182,252,1) 100%); /* IE10+ */
   background: linear-gradient(to right, rgba(178,225,255,1) 0%,rgba(102,182,252,1) 100%); /* W3C */
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b2e1ff', endColorstr='#66b6fc',GradientType=1 ); /* IE6-9 */
+  font-family: 'Asap', sans-serif;
+  font-size: 1.1em;
+}
+
+#content {
+  background-color: lightcyan;
+  border: .1em solid gray;
+  padding: 0 1.5em;
+  min-height: 39em;
 }
