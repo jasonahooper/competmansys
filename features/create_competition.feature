@@ -14,4 +14,4 @@ Feature: Create a competition
     And I fill in field "Location" with "London, England"
     And I select file "app/assets/images/Sheffield.jpg" for "competition_image"
     And I click "Create"
-    Then I will see the "Show Competition:" page
+    Then I will see the "Test Competition" page

@@ -9,4 +9,6 @@ class Event < ActiveRecord::Base
   has_many :entrants, :through => :registrants, :source => :user
 
   accepts_nested_attributes_for :event_registrations
+
+  mount_uploader :image, EventImageUploader
 end

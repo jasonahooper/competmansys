@@ -26,7 +26,7 @@ describe CompetitionAttendeesController do
     end
 
     it 'should redirect to the list Competition page' do
-      expect(response).to redirect_to(competitions_path)
+      expect(response).to redirect_to(competition_path(@competition.id))
     end
   end
 

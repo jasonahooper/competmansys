@@ -1,11 +1,22 @@
 // Place all the styles related to the events controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-#map {
-  height: 15em;
-  border: 2px solid black;
+.event-thumb {
+  border: .1em solid black;
+  margin: .5em;
+  float: left;
 }
 
-.image {
-  border: 2px solid black;
+.event-list {
+  list-style: none;
+  padding-bottom: 1em;
 }
+
+.event-list li {
+  clear:both;
+}
+
+.event-list-info {
+  padding-top: .5em;
+}
+

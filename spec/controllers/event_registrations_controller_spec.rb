@@ -31,8 +31,8 @@ describe EventRegistrationsController do
       expect(assigns(:registration).event_id).to eq(@event.id)
     end
 
-    it 'should redirect to the list event page' do
-      expect(response).to redirect_to(competition_events_path(@competition.id))
+    it 'should redirect to the competition show page' do
+      expect(response).to redirect_to(competition_path(@competition.id))
     end
   end
 
@@ -51,7 +51,7 @@ describe EventRegistrationsController do
     end
 
     it 'should redirect to the list event page' do
-      expect(response).to redirect_to(competition_events_path(@competition.id))
+      expect(response).to redirect_to(competition_path(@competition.id))
     end
   end
 

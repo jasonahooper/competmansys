@@ -9,7 +9,8 @@ class EventRegistrationsController < ApplicationController
       flash[:alert] = "Error registering for the event. "
       flash[:alert] << @registration.errors.full_messages.join(". ")
     end
-    redirect_to competition_events_path(params[:competition_id])
+    # redirect_to competition_events_path(params[:competition_id])
+    redirect_to competition_path(params[:competition_id])
   end
 
   def destroy
@@ -20,7 +21,8 @@ class EventRegistrationsController < ApplicationController
       flash[:alert] = "Error withdrawing from the event. "
       flash[:alert] << @registration.errors.full_messages.join(". ")
     end
-    redirect_to competition_events_path(params[:competition_id])
+    # redirect_to competition_events_path(params[:competition_id])
+    redirect_to competition_path(params[:competition_id])
   end
 
   def update
@@ -31,7 +33,8 @@ class EventRegistrationsController < ApplicationController
       flash[:alert] = "Error updating registration!\n"
       flash[:alert] << @comp.errors.full_messages.join(".\n")
     end
-    redirect_to competition_events_path(params[:competition_id])
+    # redirect_to competition_events_path(params[:competition_id])
+    redirect_to competition_path(params[:competition_id])
   end
 
   def edit

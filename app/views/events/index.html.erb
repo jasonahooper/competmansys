@@ -1,26 +1,23 @@
-<div class=row>
+<div class="row">
   <div class="span9">
     <h2>Events for <%=@comp.name%></h2>
-    <ul>
+  </div>
+</div>
+<div class="row">
+  <div class="span9">
+    <ul class="event-list">
       <% @events.each do |e| %>
-        <li>
-          <% if signed_in? %>
-            <% if e.competition.attendees.include?(current_user) %>
-              <% if e.registrants.find_by_user_id(current_user.id) %>
-                <%= link_to("Withdraw ", competition_competition_attendee_event_registration_path(:competition_id => e.competition.id, :competition_attendee_id => e.competition.competition_attendees.find_by_user_id(current_user.id).id, :id => e.registrants.find_by_user_id(current_user.id).event_registrations.find_by_event_id(e.id)), :method => :delete) %>
-              <% else %>
-                <%= link_to("Register ", competition_competition_attendee_event_registrations_path(:competition_id => e.competition.id, :competition_attendee_id => e.competition.competition_attendees.find_by_user_id(current_user.id).id, :event_registration => { :event_id => e.id}), :method => :post) %>
-              <% end %>
-            <% end %>
-            <%= link_to("Delete ", competition_event_path(:competition_id => e.competition_id, :id => e.id), :method => :delete) %>
-            <%= link_to("Edit ", edit_competition_event_path(:competition_id => e.competition_id, :id => e.id)) %>
-          <% end %>
-          <%= "#{e.name} - #{e.description}" %>
-          <%= link_to_if(signed_in? && e.entrants.count > 0, 'Entrants:',competition_event_entrants_path(:competition_id => e.competition_id, :event_id => e.id))%>
-          <%= e.entrants.count %>
-        </li>
+        <div class="span3">
+          <li>
+            <%= render partial: "event", :locals => { :e => e } %>
+          </li>
+        </div>
       <% end %>
     </ul>
-    <%= link_to("Add", new_competition_event_path(:competition_id => @comp.id))%>
+  </div>
+  <div class="span9">
+    <% if signed_in? %>
+      <%= link_to("Add a new event", new_competition_event_path(:competition_id => @comp.id))%>
+    <% end %>
   </div>
 </div>
