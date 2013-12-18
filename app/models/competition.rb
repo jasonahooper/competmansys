@@ -1,10 +1,10 @@
 class Competition < ActiveRecord::Base
 
-  scope :on_or_after, lambda { |start_date|
-    Competition.where('start_date >= ?', start_date).order(:start_date)
+  scope :after, lambda { |start_date|
+    Competition.where('start_date > ?', start_date).order(:start_date)
   }
   scope :upcoming, lambda {
-    Competition.on_or_after(Date.today + 1.day)
+    Competition.after(Date.today)
   }
   scope :between, lambda { |start_date, end_date|
     Competition.where('start_date between ? and ?', start_date, end_date).

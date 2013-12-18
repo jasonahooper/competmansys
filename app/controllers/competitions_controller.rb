@@ -79,7 +79,7 @@ class CompetitionsController < ApplicationController
       if params[:end_date] && params[:end_date] > params[:start_date]
         @comps = Competition.between(params[:start_date], params[:end_date])
       else
-        @comps = Competition.on_or_after(params[:start_date])
+        @comps = Competition.after(params[:start_date])
       end
     end
     render 'index'
