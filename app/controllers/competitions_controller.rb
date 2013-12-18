@@ -1,5 +1,5 @@
 class CompetitionsController < ApplicationController
-  before_filter :authenticate_user!, :except => [ :find, :search, :show ]
+  before_filter :authenticate_user!, :except => [ :find, :search, :show, :index ]
   before_filter do
     params[:competition] = competition_params if params[:competition]
   end
