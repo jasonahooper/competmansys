@@ -7,7 +7,8 @@
   <div class="row">
     <div class="span4">
       <p><%= @comp.description %></p>
-      <p><%="Running from #{@comp.start_date.to_formatted_s(:rfc822)} to #{@comp.end_date.to_formatted_s(:rfc822)}."%></p>
+      <p><%="Running from #{@comp.start_date.to_formatted_s(:rfc822)} to " +
+        "#{@comp.end_date.to_formatted_s(:rfc822)}."%></p>
       <p><%="Register before #{@comp.registration_close_date.to_formatted_s(:rfc822)}."%></p>
       <p>Located in <%= @comp.location %>.</p>
       <div id="map">
@@ -20,13 +21,18 @@
       <div class="image">
         <%= image_tag @comp.image %>
       </div>
-      <%= link_to_if(signed_in? && @comp.attendees.count > 0, 'Competition attendees:',competition_attendees_path(@comp.id))%>
+      <%= link_to_if(signed_in? && @comp.attendees.count > 0,
+        'Competition attendees:',competition_attendees_path(@comp.id))%>
       <%= @comp.attendees.count %>
       <% if signed_in? %>
         <% if @comp.attendees.include?(current_user) %>
-          <%= link_to("Withdraw ", competition_competition_attendee_path(:competition_id => @comp.id, :id => @comp.competition_attendees.find_by_user_id(current_user.id).id), :method => :delete) %>
+          <%= link_to("Withdraw ", competition_competition_attendee_path(
+            :competition_id => @comp.id, :id => @comp.competition_attendees.
+            find_by_user_id(current_user.id).id), :method => :delete) %>
         <% else %>
-          <%= link_to("Attend ", competition_competition_attendees_path(:competition_id => @comp.id, :competition_attendee => { :user_id => current_user.id }), :method => :post) %>
+          <%= link_to("Attend ", competition_competition_attendees_path(
+            :competition_id => @comp.id, :competition_attendee => {
+            :user_id => current_user.id }), :method => :post) %>
         <% end %>
       <% end %>
     </div>

@@ -8,19 +8,19 @@
           <%= number_field_tag :distance, '50', :class => 'input-mini' %>
           miles of
           <%= select_tag :from, options_for_select(@locations), :class => 'input-medium' %>
-          <%= submit_tag 'Search', :class => 'btn' %>
+          <%= submit_tag 'Search', :class => 'btn', :id => 'location-search' %>
         <% end %>
         <%= form_tag(competitions_search_path, :method => 'post') do%>
           With keywords
           <%= text_field_tag :keywords, '', :class => 'input-large', :placeholder => 'search keywords...' %>
-          <%= submit_tag 'Search', :class => 'btn' %>
+          <%= submit_tag 'Search', :class => 'btn', :id => 'keyword-search' %>
         <% end %>
         <%= form_tag(competitions_search_path, :method => 'post') do%>
           Start date after
           <%= date_field_tag :start_date, Date.today, :class => 'input-medium' %>
           (and before)
           <%= date_field_tag :end_date, Date.today, :class => 'input-medium' %>
-          <%= submit_tag 'Search', :class => 'btn' %>
+          <%= submit_tag 'Search', :class => 'btn', :id => 'date-search' %>
         <% end %>
       </div>
     </div>

@@ -21,3 +21,11 @@ end
 Then(/^I will see "(.*?)"$/) do |page_content|
   assert page.has_content?(page_content)
 end
+
+Then(/^show me the page$/) do
+  save_and_open_page
+end
+
+Then(/^debug$/) do
+  binding.pry
+end
