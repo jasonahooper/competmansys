@@ -5,10 +5,9 @@
       <ul>
       <% @event.event_registrations.order(:position).each do |er| %>
         <li>
-          <span><%= er.position %></span>
-          <span><%= er.result %></span>
-          <span><%= er.entry.first_name %></span>
-          <span><%= er.entry.last_name %></span>
+          <%= text_field_tag '', er.position, :class => 'span1 uneditable-input' %>
+          <%= text_field_tag '', er.result, :class => 'span1 uneditable-input' %>
+          <%= text_field_tag '', er.entry.full_name, :class => 'span3 uneditable-input' %>
         </li>
       <% end %>
       </ul>

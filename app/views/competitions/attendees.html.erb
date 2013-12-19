@@ -1,11 +1,11 @@
 <div id='competition-attendee-index'>
   <div class="row">
-    <div class="span9">
+    <div class="span9" id="attendee-list">
       <h2>List Attendees for Competition: <%=@comp.name%></h2>
         <ul>
           <% @attendees.each do |a| %>
             <li>
-              <%= "#{a.full_name}" %>
+              <%= text_field_tag '', a.full_name, :class => 'span3 uneditable-input' %>
             </li>
           <% end %>
         </ul>

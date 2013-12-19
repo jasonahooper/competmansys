@@ -5,7 +5,7 @@
       <%= form_for @comp do |f| %>
         <%= render partial: "form", :locals => {:f => f} %>
         <div>
-          <%= f.submit "Create" %>
+          <%= f.submit "Create", :class => 'btn' %>
         </div>
       <% end %>
     </div>

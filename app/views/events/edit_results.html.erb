@@ -2,11 +2,16 @@
   <div class="row">
     <div class='span9'>
       <h2>Results for <%= @event.name %></h2>
-      <%= form_for [@comp, @event], :html => { :class => 'form-inline' } do |f| %>
+      <%= form_for [@comp, @event], :html => { :class => 'form-inline', :id => 'results-form' } do |f| %>
+        <%= text_field_tag '', 'Competitor', :disabled => true, :class => 'span3'%>
+        <%= text_field_tag '', 'Result', :disabled => true, :class => 'span1'%>
+        <%= text_field_tag '', 'Position', :disabled => true, :class => 'span1'%>
         <%= f.fields_for :event_registrations do |r| %>
           <%= render partial: "event_registrations/form", :locals => {:f => r} %>
         <% end %>
-        <%= f.button "Save" %>
+        <!-- <div class="row"> -->
+        <%= f.button "Save", :class => 'btn' %>
+        <!-- </div> -->
       <% end %>
     </div>
   </div>

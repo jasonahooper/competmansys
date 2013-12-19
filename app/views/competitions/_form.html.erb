@@ -1,52 +1,42 @@
         <fieldset>
           <%= f.label :name %>
-          <%= f.text_field :name, :autofocus => true %>
+          <%= f.text_field :name, :autofocus => true, :class => 'span3' %>
         </fieldset>
 
         <fieldset>
           <%= f.label :description %>
-          <%= f.text_area :description%>
+          <%= f.text_area :description, :class => 'span3'%>
         </fieldset>
 
         <fieldset>
           <%= f.label :start_date %>
-          <%= f.date_field :start_date %>
+          <%= f.date_field :start_date, :class => 'span2' %>
         </fieldset>
 
         <fieldset>
           <%= f.label :end_date %>
-          <%= f.date_field :end_date %>
+          <%= f.date_field :end_date, :class => 'span2' %>
         </fieldset>
 
         <fieldset>
           <%= f.label :image %>
-          <%= f.file_field :image %>
+          <%= f.file_field :image, :class => 'span3'  %>
         </fieldset>
 
         <fieldset>
           <%= f.label :registration_close_date %>
-          <%= f.date_field :registration_close_date %>
+          <%= f.date_field :registration_close_date, :class => 'span2' %>
         </fieldset>
 
         <fieldset>
           <%= f.label :location %>
-          <%= f.text_field :location %>
+          <%= f.text_field :location, :class => 'span3' %>
         </fieldset>
 
         <fieldset>
           <%= f.label :justgiving_id, "JustGiving Id" %>
-          <%= f.text_field :justgiving_id %>
-          <%= button_tag :find, :id => 'modal-find', :type => 'button', :data => {:toggle => 'modal', :target => '#myModal'} %>
-        </fieldset>
-
-        <fieldset>
-          Event List:
-          <%= f.fields_for :events do |e| %>
-            <%= e.label :name %>
-            <%= e.text_field :name %>
-            <%= e.label :description %>
-            <%= e.text_field :description %>
-          <% end %>
+          <%= f.number_field :justgiving_id, :class => 'span2' %>
+          <%= button_tag :find, :id => 'modal-find', :type => 'button', :data => {:toggle => 'modal', :target => '#myModal'}, :class => 'btn' %>
         </fieldset>
 
 <!-- Modal -->

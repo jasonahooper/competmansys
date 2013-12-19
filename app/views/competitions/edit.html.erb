@@ -5,7 +5,7 @@
       <%= form_for @comp, :options => { :class => 'form-horizontal'} do |f| %>
         <%= render partial: "form", :locals => {:f => f} %>
         <div>
-          <%= f.submit "Save" %>
+          <%= f.submit "Save", :class => 'btn' %>
         </div>
       <% end %>
     </div>
