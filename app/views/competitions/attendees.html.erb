@@ -1,14 +1,18 @@
 <div id='competition-attendee-index'>
   <div class="row">
     <div class="span9" id="attendee-list">
-      <h2>List Attendees for Competition: <%=@comp.name%></h2>
-        <ul>
+      <h2>List Attendees for <%=@comp.name%></h2>
+        <ul class="form-list">
+          <li>
+            <%= text_field_tag '', 'Attendant', :class => 'span3', :disabled => true %>
+          </li>
           <% @attendees.each do |a| %>
             <li>
               <%= text_field_tag '', a.full_name, :class => 'span3 uneditable-input' %>
             </li>
           <% end %>
         </ul>
+        <%= link_to('Competition Information', competition_path(@comp.id)) %>
     </div>
   </div>
 </div>

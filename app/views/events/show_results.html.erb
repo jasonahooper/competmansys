@@ -1,8 +1,13 @@
 <div id='show-event-results'>
   <div class='row'>
     <div class='span9'>
-      <h2>Results for <%= @event.name %></h2>
-      <ul>
+      <h2>Results for <%= @event.name %> in <%= @event.competition.name %></h2>
+      <ul class="form-list">
+        <li>
+          <%= text_field_tag '', 'Position', :class => 'span1', :disabled => true %>
+          <%= text_field_tag '', 'Result', :class => 'span1', :disabled => true %>
+          <%= text_field_tag '', 'Competitior', :class => 'span3', :disabled => true %>
+        </li>
       <% @event.event_registrations.order(:position).each do |er| %>
         <li>
           <%= text_field_tag '', er.position, :class => 'span1 uneditable-input' %>
@@ -11,6 +16,10 @@
         </li>
       <% end %>
       </ul>
+      <nav>
+        <%= link_to('Competition Information', competition_path(@event.competition.id)) %>
+        <%= link_to('Event List', competition_events_path(@event.competition.id)) %>
+      </nav>
     </div>
   </div>
 </div>

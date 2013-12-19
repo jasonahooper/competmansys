@@ -16,8 +16,11 @@
     </ul>
   </div>
   <div class="span9">
-    <% if signed_in? %>
-      <%= link_to("Add a new event", new_competition_event_path(:competition_id => @comp.id))%>
-    <% end %>
+    <nav>
+      <% if signed_in? %>
+        <%= link_to("Add a new event", new_competition_event_path(:competition_id => @comp.id))%>
+      <% end %>
+      <%= link_to('Competition Information', competition_path(@comp.id)) %>
+    </nav>
   </div>
 </div>
