@@ -4,7 +4,7 @@
       <h2>Edit Event for Competition <%="#{@comp.name}"%></h2>
       <%= form_for [@comp, @event] do |f| %>
         <%= render partial: "form", :locals => {:f => f} %>
-        <%= link_to("Edit results", competition_event_edit_results_path(@comp.id, @event.id)) %><br /><br />
+        <%= link_to_if(@event.registrants.count > 0, "Edit results", competition_event_edit_results_path(@comp.id, @event.id)) %><br /><br />
         <div>
           <%= f.submit "Save", :class => 'btn' %>
         </div>
