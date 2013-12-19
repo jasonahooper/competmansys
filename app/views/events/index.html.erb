@@ -7,7 +7,7 @@
   <div class="span9">
     <ul class="event-list">
       <% @events.each do |e| %>
-        <div class="span3">
+        <div class="span4">
           <li>
             <%= render partial: "event", :locals => { :e => e } %>
           </li>

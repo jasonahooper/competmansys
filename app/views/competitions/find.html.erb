@@ -1,26 +1,28 @@
 <div id='competition-find'>
   <div class="row">
     <div class="span9">
-      <h2>Find Competitions:</h2>
-      <%= form_tag(competitions_search_path, :method => 'post') do%>
-        Within
-        <%= number_field_tag :distance, '50', :class => 'input-mini' %>
-        miles of
-        <%= select_tag :from, options_for_select(@locations), :class => 'input-medium' %>
-        <%= submit_tag 'Search', :class => 'btn' %>
-      <% end %>
-      <%= form_tag(competitions_search_path, :method => 'post') do%>
-        With keywords
-        <%= text_field_tag :keywords, '', :class => 'input-large', :placeholder => 'search keywords...' %>
-        <%= submit_tag 'Search', :class => 'btn' %>
-      <% end %>
-      <%= form_tag(competitions_search_path, :method => 'post') do%>
-        Start date after
-        <%= date_field_tag :start_date, Date.today, :class => 'input-medium' %>
-        and (optionally) before
-        <%= date_field_tag :end_date, Date.today, :class => 'input-medium' %>
-        <%= submit_tag 'Search', :class => 'btn' %>
-      <% end %>
+      <h2>Find Competitions</h2>
+      <div id="search-competitions">
+        <%= form_tag(competitions_search_path, :method => 'post') do%>
+          Within
+          <%= number_field_tag :distance, '50', :class => 'input-mini' %>
+          miles of
+          <%= select_tag :from, options_for_select(@locations), :class => 'input-medium' %>
+          <%= submit_tag 'Search', :class => 'btn' %>
+        <% end %>
+        <%= form_tag(competitions_search_path, :method => 'post') do%>
+          With keywords
+          <%= text_field_tag :keywords, '', :class => 'input-large', :placeholder => 'search keywords...' %>
+          <%= submit_tag 'Search', :class => 'btn' %>
+        <% end %>
+        <%= form_tag(competitions_search_path, :method => 'post') do%>
+          Start date after
+          <%= date_field_tag :start_date, Date.today, :class => 'input-medium' %>
+          (and before)
+          <%= date_field_tag :end_date, Date.today, :class => 'input-medium' %>
+          <%= submit_tag 'Search', :class => 'btn' %>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>

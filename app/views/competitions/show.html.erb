@@ -35,7 +35,7 @@
     <div class="span12">
       <h3>Events</h3>
       <% @comp.events.each do |e| %>
-        <div class="span3">
+        <div class="span4">
         <%= render partial: "events/event", :locals => { :e => e } %>
         </div>
       <% end %>
