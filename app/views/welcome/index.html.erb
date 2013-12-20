@@ -7,7 +7,7 @@
         <ol class="carousel-indicators">
           <% active = "active" %>
           <% Competition.upcoming.limit(3).count.times do |i|%>
-            <li data-target="#competition-carousel" data-slide-to="<%=i%>" class="<%=active%>"></li>
+            <li data-target="#competition-carousel" data-slide-to="<%= i %>" class="<%= active %>"></li>
             <% active=nil %>
           <% end %>
         </ol>
@@ -16,7 +16,7 @@
         <div class="carousel-inner">
           <% active = "active" %>
           <% Competition.upcoming.order(:start_date).limit(3).each do |c| %>
-            <div class="item <%=active%>">
+            <div class="item <%= active %>">
               <%= image_tag c.image %>
               <div class="carousel-caption">
                 <p><%= "#{c.name} - #{c.description} in #{c.location}" %></p>
