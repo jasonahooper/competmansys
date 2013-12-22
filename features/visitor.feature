@@ -33,3 +33,16 @@ Feature: Visitor feature
     And I click "date-search"
     Then I will see "Second"
     And I will not see "First"
+
+  Scenario: A visitor finds a competition by start and end date
+
+    Given that I am on the home page
+    And there is a competition named "First" starting in "1" weeks from now
+    And there is a competition named "Second" starting in "2" weeks from now
+    When I follow "Find"
+    Then I will see the "Find Competitions" page
+    When I fill in field "start_date" with "0" weeks from now
+    And I fill in field "end_date" with "1" weeks from now
+    And I click "date-search"
+    Then I will see "First"
+    Then I will not see "Second"
