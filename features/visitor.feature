@@ -45,4 +45,5 @@ Feature: Visitor feature
     And I fill in field "end_date" with "1" weeks from now
     And I click "date-search"
     Then I will see "First"
-    Then I will not see "Second"
+    And I will not see "Second"
+
