@@ -47,3 +47,15 @@ Feature: Visitor feature
     Then I will see "First"
     And I will not see "Second"
 
+  Scenario: A visitor finds a competition by location
+
+    Given that I am on the home page
+    And there is a competition named "First" located at "0" "0" latlong
+    And there is a competition named "Second" located at "1" "1" latlong
+    When I follow "Find"
+    Then I will see the "Find Competitions" page
+    When I fill in field "distance" with "50"
+    And I click "location-search"
+    Then I will see "First"
+    And I will not see "Second"
+
