@@ -181,34 +181,61 @@ describe CompetitionsController do
     end
 
     describe 'updating an edited competition' do
-      before do
-        valid_params = { :id => @competition.id, :competition =>
-          {
-            :name => 'Test2', :description => 'Updated', :events_attributes => {
-              "0" => {
-              :name => 'test event', :description => 'test event desc'
-            }}
+      context 'with valid data' do
+        before do
+          valid_params = { :id => @competition.id, :competition =>
+            {
+              :name => 'Test2', :description => 'Updated', :events_attributes => {
+                "0" => {
+                :name => 'test event', :description => 'test event desc'
+              }}
+            }
           }
-        }
-        patch :update, valid_params
+          patch :update, valid_params
+        end
+
+        it 'should update the Competition' do
+          expect(Competition.count).to eq(1)
+        end
+
+        it 'should add the Event' do
+          expect(Event.count).to eq(1)
+        end
+
+        it 'should set the Competition name' do
+          expect(Competition.first.name).to eq("Test2")
+        end
+
+        it 'should redirect to the show Competition page' do
+          expect(response).to redirect_to(competition_path(Competition.first.id))
+        end
       end
 
-      it 'should update the Competition' do
-        expect(Competition.count).to eq(1)
-      end
+      context 'with invalid data' do
+        before do
+          invalid_params = { :id => @competition.id, :competition =>
+            {
+              :name => 'Test2', :start_date => 2.days.ago, :events_attributes => {
+                "0" => {
+                :name => 'test event', :description => 'test event desc'
+              }}
+            }
+          }
+          patch :update, invalid_params
+        end
 
-      it 'should add the Event' do
-        expect(Event.count).to eq(1)
-      end
+        it 'should not add the Event' do
+          expect(Event.count).to eq(0)
+        end
 
-      it 'should set the Competition name' do
-        expect(Competition.first.name).to eq("Test2")
-      end
+        it 'should not set the Competition name' do
+          expect(Competition.first.name).to_not eq("Test2")
+        end
 
-      it 'should redirect to the show Competition page' do
-        expect(response).to redirect_to(competition_path(Competition.first.id))
+        it 'should render the edit Competition page' do
+          expect(response).to render_template("edit")
+        end
       end
-
     end
     describe 'a list of attendess is requested' do
       before do
@@ -248,39 +275,63 @@ describe CompetitionsController do
   end
 
   describe 'saving a new competition' do
+    context 'with valid data' do
+      before do
+        @request.env["devise.mapping"] = Devise.mappings[:user]
 
-    before do
-      @request.env["devise.mapping"] = Devise.mappings[:user]
-
-      file = fixture_file_upload('/empty.jpg','application/jpg')
-      valid_params = { :competition =>
-        {
-          :name => 'Test', :description => 'Test competition',
-          :start_date => 7.days.from_now, :end_date => 7.days.from_now + 7.days,
-          :image => file, :registration_close_date => 2.days.from_now,
-          :location => 'a test location', :events_attributes => { "0" => {
-            :name => 'test event', :description => 'test event desc'}
+        file = fixture_file_upload('/empty.jpg','application/jpg')
+        valid_params = { :competition =>
+          {
+            :name => 'Test', :description => 'Test competition',
+            :start_date => 7.days.from_now, :end_date => 7.days.from_now + 7.days,
+            :image => file, :registration_close_date => 2.days.from_now,
+            :location => 'a test location', :events_attributes => { "0" => {
+              :name => 'test event', :description => 'test event desc'}
+            }
           }
         }
-      }
-      post :create, valid_params
-    end
+        post :create, valid_params
+      end
 
-    it 'should create the Competition' do
-      expect(Competition.count).to eq(1)
-    end
+      it 'should create the Competition' do
+        expect(Competition.count).to eq(1)
+      end
 
-    it 'should set the Competition user_id' do
-      expect(Competition.first.user_id).to eq(@user.id)
-    end
+      it 'should set the Competition user_id' do
+        expect(Competition.first.user_id).to eq(@user.id)
+      end
 
-    it 'should add a CompetitionAdministrator' do
-      expect(CompetitionAdministrator.count).to eq(1)
-    end
+      it 'should add a CompetitionAdministrator' do
+        expect(CompetitionAdministrator.count).to eq(1)
+      end
 
-    it 'should redirect to the show Competition page' do
-      expect(response).to redirect_to(competition_path(Competition.first.id))
+      it 'should redirect to the show Competition page' do
+        expect(response).to redirect_to(competition_path(Competition.first.id))
+      end
     end
+    context 'with invalid data' do
+      before do
+        @request.env["devise.mapping"] = Devise.mappings[:user]
 
+        file = fixture_file_upload('/empty.jpg','application/jpg')
+        invalid_params = { :competition =>
+          {
+            :name => 'Test', :description => 'Test competition',
+            :start_date => 7.days.ago, :end_date => 7.days.from_now + 7.days,
+            :image => file, :registration_close_date => 2.days.from_now,
+            :location => 'a test location', :events_attributes => { "0" => {
+              :name => 'test event', :description => 'test event desc'}
+            }
+          }
+        }
+        post :create, invalid_params
+      end
+      it 'should not create the Competition' do
+        expect(Competition.count).to eq(0)
+      end
+      it 'should render the new Competition page' do
+        expect(response).to render_template("new")
+      end
+    end
   end
 end
