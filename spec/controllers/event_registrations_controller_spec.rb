@@ -12,27 +12,41 @@ describe EventRegistrationsController do
   end
 
   describe 'a user registers for an event' do
-    before do
-      post :create, :competition_id => @competition.id,
-        :competition_attendee_id => @competition_attendee.id,
-        :event_registration => { :event_id => @event.id}
+    context 'with valid data' do
+      before do
+        post :create, :competition_id => @competition.id,
+          :competition_attendee_id => @competition_attendee.id,
+          :event_registration => { :event_id => @event.id}
+      end
+
+      it 'should create the EventRegistration' do
+        expect(EventRegistration.count).to eq(1)
+      end
+
+      it 'should set the competition_attendee_id' do
+        expect(assigns(:registration).competition_attendee_id).to eq(
+          @competition_attendee.id)
+      end
+
+      it 'should set the event_id' do
+        expect(assigns(:registration).event_id).to eq(@event.id)
+      end
+
+      it 'should redirect to the competition show page' do
+        expect(response).to redirect_to(competition_path(@competition.id))
+      end
     end
 
-    it 'should create the EventRegistration' do
-      expect(EventRegistration.count).to eq(1)
-    end
+    context 'with invalid data' do
+      before do
+        post :create, :competition_id => @competition.id,
+          :competition_attendee_id => @competition_attendee.id,
+          :event_registration => { :event_id => nil}
+      end
 
-    it 'should set the competition_attendee_id' do
-      expect(assigns(:registration).competition_attendee_id).to eq(
-        @competition_attendee.id)
-    end
-
-    it 'should set the event_id' do
-      expect(assigns(:registration).event_id).to eq(@event.id)
-    end
-
-    it 'should redirect to the competition show page' do
-      expect(response).to redirect_to(competition_path(@competition.id))
+      it 'should not create the EventRegistration' do
+        expect(EventRegistration.count).to eq(0)
+      end
     end
   end
 
