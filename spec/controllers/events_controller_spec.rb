@@ -41,19 +41,35 @@ describe EventsController do
     end
 
     describe 'saving events' do
-      before do
-        patch :update, :competition_id => @competition.id, :id => @event.id,
-          :event => { :name => 'updated'}
+      context 'with valid data' do
+        before do
+          patch :update, :competition_id => @competition.id, :id => @event.id,
+            :event => { :name => 'updated'}
+        end
+
+        it 'should redirect to the list event page' do
+          expect(response).to redirect_to(competition_events_path)
+        end
+
+        it 'should update the event' do
+          expect(assigns(:event).name).to eq('updated')
+        end
       end
 
-      it 'should redirect to the list event page' do
-        expect(response).to redirect_to(competition_events_path)
-      end
+      context 'with invalid data' do
+        before do
+          patch :update, :competition_id => @competition.id, :id => @event.id,
+            :event => { :name => ''}
+        end
 
-      it 'should update the event' do
-        expect(assigns(:event).name).to eq('updated')
-      end
+        it 'should render the edit event page' do
+          expect(response).to render_template('edit')
+        end
 
+        it 'should not update the event' do
+          expect(assigns(:event).name).to_not eq('updated')
+        end
+      end
     end
 
     describe 'a list of entrants for an event' do
@@ -119,6 +135,20 @@ describe EventsController do
         expect(response.status).to eq(200)
       end
     end
+
+    describe 'editing an existing event' do
+      before do
+        get :edit, :competition_id => @competition.id, :id => @event.id
+      end
+
+      it 'should render the edit event page' do
+        expect(response).to render_template("edit")
+      end
+
+      it 'should set the @event variable' do
+        expect(assigns(:event)).to eq(@event)
+      end
+    end
   end
 
   describe 'creating a new event' do
@@ -137,21 +167,38 @@ describe EventsController do
   end
 
   describe 'saving a new event' do
-    before do
-      post :create, :competition_id => @competition.id, :event => {
-        :name => 'test new event', :description => 'test new event'}
+    context 'with valid data' do
+      before do
+        post :create, :competition_id => @competition.id, :event => {
+          :name => 'test new event', :description => 'test new event'}
+      end
+
+      it 'should create the Event' do
+        expect(Event.count).to eq(1)
+      end
+
+      it 'should set the competition_id' do
+        expect(assigns(:event).competition_id).to eq(@competition.id)
+      end
+
+      it 'should redirect to the list event page' do
+        expect(response).to redirect_to(competition_events_path)
+      end
     end
 
-    it 'should create the Event' do
-      expect(Event.count).to eq(1)
-    end
+    context 'with invalid data' do
+      before do
+        post :create, :competition_id => @competition.id, :event => {
+          :name => '', :description => 'test new event'}
+      end
 
-    it 'should set the competition_id' do
-      expect(assigns(:event).competition_id).to eq(@competition.id)
-    end
+      it 'should not create the Event' do
+        expect(Event.count).to eq(0)
+      end
 
-    it 'should redirect to the list event page' do
-      expect(response).to redirect_to(competition_events_path)
+      it 'should render the edit event page' do
+        expect(response).to render_template("new")
+      end
     end
   end
 
