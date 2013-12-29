@@ -168,7 +168,16 @@ describe CompetitionsController do
       it 'should delete the Competition Events' do
         expect(Event.count).to eq(0)
       end
+    end
 
+    describe 'editing a competition' do
+      before do
+        get :edit, { :id => @competition.id }
+      end
+
+      it 'should set the @comp variable' do
+        assigns(:comp).should eq(@competition)
+      end
     end
 
     describe 'updating an edited competition' do
