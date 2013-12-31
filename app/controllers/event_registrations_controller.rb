@@ -1,7 +1,8 @@
 class EventRegistrationsController < ApplicationController
   before_filter :authenticate_user!
   before_filter do
-    params[:event_registration] = event_registration_params if params[:event_registration]
+    params[:event_registration] = event_registration_params if
+      params[:event_registration]
   end
   load_and_authorize_resource
 
