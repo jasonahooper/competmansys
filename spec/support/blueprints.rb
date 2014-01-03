@@ -37,7 +37,6 @@ end
 Event.blueprint do
   competition_id  { Competition.make!.id }
   name            { 'A Test Event' }
-  description     { 'A test event descritpion' }
 end
 
 EventRegistration.blueprint do
