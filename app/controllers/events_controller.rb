@@ -10,7 +10,7 @@ class EventsController < ApplicationController
   end
 
   def index
-    @events = Competition.find(params[:competition_id]).events
+    @events = Competition.find(params[:competition_id]).events.order(:name)
   end
 
   def destroy
