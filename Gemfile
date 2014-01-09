@@ -75,6 +75,7 @@ group :development, :test do
   gem 'ffaker'
   gem 'erd'
   gem 'mocha'
+  gem 'selenium-webdriver'
 end
 
 gem 'rails_12factor', group: :production
