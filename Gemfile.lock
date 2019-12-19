@@ -84,7 +84,7 @@ GEM
     excon (0.28.0)
     execjs (2.0.2)
     ffaker (1.22.1)
-    ffi (1.9.3)
+    ffi (1.11.3)
     fog (1.18.0)
       builder
       excon (~> 0.28.0)
