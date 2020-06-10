@@ -96,7 +96,7 @@ GEM
       nokogiri (~> 1.5)
       ruby-hmac
     formatador (0.2.4)
-    geocoder (1.1.6)
+    geocoder (1.6.1)
     gherkin (2.12.2)
       multi_json (~> 1.3)
     gmaps4rails (2.1.1)
