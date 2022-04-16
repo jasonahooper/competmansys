@@ -74,7 +74,7 @@ group :development, :test do
   gem 'machinist'
   gem 'ffaker'
   gem 'erd'
-  gem 'mocha'
+  gem 'mocha', require: false
   gem 'selenium-webdriver'
 end
 
