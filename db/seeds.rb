@@ -9,7 +9,7 @@
   :roles_mask => 3, :first_name => 'Jason', :last_name => 'Hooper')
 
 @comp = Competition.create!(:name => 'Archery Test', :description => 'An Archery Competition',
-  :start_date => '2014-1-1', :end_date => '2014-1-1', :registration_close_date => '2014-1-1',
+  :start_date => '2023-3-1', :end_date => '2023-3-11', :registration_close_date => '2023-2-1',
   :image => open("app/assets/images/bangalore.jpg"), :location => 'Bangalore, India',
   :user_id => @user.id)
 
@@ -19,7 +19,7 @@ Event.create!(:name => 'Team Recurve', :competition_id => @comp.id)
 Event.create!(:name => 'Team Compound', :competition_id => @comp.id)
 
 @comp = Competition.create!(:name => 'Athletics Test', :description => 'An Athletics Competition',
-  :start_date => '2014-2-1', :end_date => '2014-2-1', :registration_close_date => '2014-2-1',
+  :start_date => '2023-2-1', :end_date => '2023-2-1', :registration_close_date => '2023-2-1',
   :image => open("app/assets/images/birmingham.jpg"), :location => 'Alexandra Stadium, Birmingham, England',
   :user_id => @user.id)
 
@@ -39,7 +39,7 @@ Event.create!(:name => 'Discuss', :description => 'Discuss', :competition_id => 
 Event.create!(:name => 'Javelin', :description => 'Javelin', :competition_id => @comp.id)
 
 @comp = Competition.create!(:name => 'Swimming Test', :description => 'A Swimming Competition',
-  :start_date => '2014-3-1', :end_date => '2014-3-1', :registration_close_date => '2014-3-1',
+  :start_date => '2023-3-1', :end_date => '2023-3-1', :registration_close_date => '2023-3-1',
   :image => open("app/assets/images/sheffield.jpg"), :location => 'Ponds Forge, Sheffield, England',
   :user_id => @user.id)
 
