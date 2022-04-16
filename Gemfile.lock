@@ -271,7 +271,7 @@ DEPENDENCIES
   mocha
   pg
   pry-byebug
-  rails (= 4.0.0)
+  rails (~> 4.0.0)
   rails-observers
   rails_12factor
   rspec-rails
@@ -285,3 +285,6 @@ DEPENDENCIES
   uglifier (>= 1.3.0)
   underscore-rails
   unf
+
+BUNDLED WITH
+   1.17.3
