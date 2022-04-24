@@ -1,6 +1,6 @@
 require 'spec_helper'
 
 describe CompetitionAdministrator do
-  it { should belong_to(:user) }
-  it { should belong_to(:competition)}
+  it { is_expected.to belong_to(:user) }
+  it { is_expected.to belong_to(:competition)}
 end

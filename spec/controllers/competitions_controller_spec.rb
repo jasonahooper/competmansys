@@ -176,7 +176,7 @@ describe CompetitionsController do
       end
 
       it 'should set the @comp variable' do
-        assigns(:comp).should eq(@competition)
+        expect(assigns(:comp)).to eq(@competition)
       end
     end
 

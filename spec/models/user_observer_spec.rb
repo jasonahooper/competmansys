@@ -7,7 +7,7 @@ describe UserObserver do
   end
 
   it "should invoke after_create on the observer" do
-    @observer.should_receive(:after_create)
+    expect(@observer).to receive(:after_create)
     @user.save!
   end
 end

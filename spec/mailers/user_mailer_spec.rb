@@ -6,13 +6,13 @@ describe UserMailer do
   end
 
   it "should queue the email" do
-    ActionMailer::Base.deliveries.empty?.should be_falsey
+    expect(ActionMailer::Base.deliveries.empty?).to be_falsey
   end
   it "should send the email to the new user" do
-    ActionMailer::Base.deliveries.last.to.should eq([@user.email])
+    expect(ActionMailer::Base.deliveries.last.to).to eq([@user.email])
   end
   it "should have a subject of welcome" do
-    ActionMailer::Base.deliveries.last.subject.should
-      eq("Welcome to the Competition Management System")
+    expect(ActionMailer::Base.deliveries.last.subject).
+    to eq("Welcome to the Competition Management System")
   end
 end

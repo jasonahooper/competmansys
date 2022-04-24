@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe CompetitionAttendee do
-  it { should belong_to(:competition) }
-  it { should belong_to(:user) }
-  it { should have_many(:event_registrations) }
+  it { is_expected.to belong_to(:competition) }
+  it { is_expected.to belong_to(:user) }
+  it { is_expected.to have_many(:event_registrations) }
 end

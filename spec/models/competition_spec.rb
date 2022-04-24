@@ -2,47 +2,47 @@ require 'spec_helper'
 
 describe Competition do
 
-  it { should belong_to(:user) }
+  it { is_expected.to belong_to(:user) }
 
-  it { should have_many(:competition_administrators) }
-  it { should have_many(:competition_attendees) }
-  it { should have_many(:events) }
+  it { is_expected.to have_many(:competition_administrators) }
+  it { is_expected.to have_many(:competition_attendees) }
+  it { is_expected.to have_many(:events) }
 
-  it { should validate_presence_of(:name) }
-  it { should validate_presence_of(:description) }
-  it { should validate_presence_of(:image) }
-  it { should validate_presence_of(:start_date) }
-  it { should validate_presence_of(:end_date) }
-  it { should validate_presence_of(:registration_close_date) }
-  it { should validate_presence_of(:location) }
+  it { is_expected.to validate_presence_of(:name) }
+  it { is_expected.to validate_presence_of(:description) }
+  it { is_expected.to validate_presence_of(:image) }
+  it { is_expected.to validate_presence_of(:start_date) }
+  it { is_expected.to validate_presence_of(:end_date) }
+  it { is_expected.to validate_presence_of(:registration_close_date) }
+  it { is_expected.to validate_presence_of(:location) }
 
   it 'should have start_date after today' do
-    Competition.new(:name => 'test',:description => 'test',
+    expect(Competition.new(:name => 'test',:description => 'test',
       :image => 'test', :start_date => Date.yesterday,
-      :end_date => Date.yesterday).should have(1).errors_on(:start_date)
+      :end_date => Date.yesterday)).to have(1).errors_on(:start_date)
   end
 
   it 'should have end_date on or after start_date' do
-    Competition.new(:name => 'test',:description => 'test',
+    expect(Competition.new(:name => 'test',:description => 'test',
       :image => 'test', :start_date => Date.today + 1.day,
-      :end_date => Date.yesterday).should have(1).errors_on(:end_date)
+      :end_date => Date.yesterday)).to have(1).errors_on(:end_date)
   end
 
   it 'should have registration_close_date on or before start_date' do
-    Competition.new(:name => 'test',:description => 'test',
+    expect(Competition.new(:name => 'test',:description => 'test',
       :image => 'test', :start_date => Date.today,
-      :registration_close_date => Date.today + 1.day).should have(1).
+      :registration_close_date => Date.today + 1.day)).to have(1).
         errors_on(:registration_close_date)
   end
 
-  it { should accept_nested_attributes_for(:events) }
+  it { is_expected.to accept_nested_attributes_for(:events) }
 
   it 'should return upcoming competitions starting after today' do
     Competition.make!(:start_date => Date.today, :registration_close_date => Date.today)
     Competition.make!(:start_date => Date.tomorrow, :registration_close_date => Date.today)
-    (Competition.upcoming.count).should eq(1)
-    (Competition.after(Date.yesterday).count).should eq(2)
-    (Competition.between(Date.today,Date.tomorrow).count).should eq(2)
+    expect(Competition.upcoming.count).to eq(1)
+    expect(Competition.after(Date.yesterday).count).to eq(2)
+    expect(Competition.between(Date.today,Date.tomorrow).count).to eq(2)
   end
 
 end
