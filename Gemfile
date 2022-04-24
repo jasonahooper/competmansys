@@ -67,7 +67,7 @@ end
 group :development, :test do
   gem 'pry-byebug'
   gem 'rspec-rails'
-  gem 'shoulda-matchers'
+  gem 'shoulda-matchers', '<3'
   gem 'database_cleaner'
   gem 'cucumber-rails', :require => false
   gem 'launchy'
