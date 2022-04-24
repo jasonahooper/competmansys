@@ -66,7 +66,7 @@ end
 
 group :development, :test do
   gem 'pry-byebug'
-  gem 'rspec-rails'
+  gem 'rspec-rails', '<3'
   gem 'shoulda-matchers'
   gem 'database_cleaner'
   gem 'cucumber-rails', :require => false
@@ -80,3 +80,4 @@ end
 
 gem 'rails_12factor', group: :production
 gem 'rake', '< 11'
+gem 'rspec-collection_matchers'

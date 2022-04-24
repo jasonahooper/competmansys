@@ -6,7 +6,7 @@ describe UserMailer do
   end
 
   it "should queue the email" do
-    ActionMailer::Base.deliveries.empty?.should be_false
+    ActionMailer::Base.deliveries.empty?.should be_falsey
   end
   it "should send the email to the new user" do
     ActionMailer::Base.deliveries.last.to.should eq([@user.email])
